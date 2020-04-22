@@ -2,15 +2,29 @@
 
 [![](https://jitpack.io/v/elinkthings/BodyFatScaleSDKRepositoryAndroid.svg)](https://jitpack.io/#elinkthings/BodyFatScaleSDKRepositoryAndroid)
 
-[aar package download link](https://github.com/inet2018/BodyFatScaleSDKRepositoryAndroid/releases)
+[aar package download link](https://github.com/elinkthings/BodyFatScaleSDKRepositoryAndroid/releases)
 
 [key registered address](http://sdk.aicare.net.cn)
 
 [中文文档](README_CN.md)
 
-This document is a guide for Android developers to integrate good figure-SDK-Android in Android 4.4 and above systems, mainly for some key usage examples
 
-## 1 Import SDK
+## Overview
+- What is elink body fat scale SDK?
+
+> The elink body fat scale SDK is a Bluetooth development tool provided to elink partners. The SDK implements and encapsulates the elink Bluetooth protocol and is responsible for the communication between the mobile phone App and the Bluetooth body fat scale device. Bluetooth body fat scale application.
+
+- Scope of application
+
+> Partners who need to personalize their Android Bluetooth body fat scale APP.
+
+
+
+## Conditions of Use
+1. Minimum version android4.4 (API 19)
+2. The Bluetooth version used by the device requires 4.0 and above
+
+##  Import SDK
 
 
 ```
@@ -43,7 +57,7 @@ You can also use aar package dependency,Please download it into the project's li
 
 ```
 
-## 2 permission settings
+##   permission settings
 
 ```
 <!-In most cases, you need to ensure that the device supports BLE .-->
@@ -64,7 +78,12 @@ You can also use aar package dependency,Please download it into the project's li
 
 > 6.0 and above systems need to locate permissions and need to obtain permissions manually
 
-## 3 start integration
+##   start integration
+> First configure the key and secret for the SDK, [application address](http://sdk.aicare.net.cn)
+```
+  // Called in the application of the main project
+  AiFitSDK.getInstance (). Init (this, key, secret);
+```
 
 > Add below AndroidManifest.xml application tag
 ```
@@ -77,12 +96,6 @@ You can also use aar package dependency,Please download it into the project's li
 
 ```
 
-
-> initialization  [key registered address](http://sdk.aicare.net.cn)
-```
-  // Call in application
-  AiFitSDK.getInstance ().init(this, key, secret);
-```
 
 > You can directly make your own `Activity` class extend` BleProfileServiceReadyActivity`
 
@@ -108,7 +121,7 @@ public class MyActivity extends BleProfileServiceReadyActivity
     
 ```
 
-## 4 scan the device, stop scanning the device, check the scan status
+##   scan the device, stop scanning the device, check the scan status
 The APIs related to scanning are as follows. For details, please refer to the BleProfileServiceReadyActivity class. For details, refer to the sample project.
 
 ```
@@ -121,7 +134,7 @@ The APIs related to scanning are as follows. For details, please refer to the Bl
                
       
     }
-// Call the stopScan method to stop scanning. This convenience is not recommended for customers to call
+// Call the stopScan method to stop scanning
  stopScan ();
 // Call the isScanning method to see if it is scanning true: scanning; false: scanning stopped
  isScanning ();
@@ -153,7 +166,7 @@ The APIs related to scanning are as follows. For details, please refer to the Bl
 ```
       
 
-## 5 connect the device, disconnect the device
+## connect the device, disconnect the device
 
 The APIs related to the connection are as follows, please refer to the BleProfileServiceReadyActivity class for details.
 
@@ -172,9 +185,9 @@ startConnect (String address)
  binder.disconnect ()
 ```
 
-Use the `startConnect` method to connect to the body fat scale, use the` onStateChanged` method to monitor the status of the connection, and use the `onError` method to monitor for exceptions during the connection process, in order to facilitate additional processing and troubleshooting. Use the `isDeviceConnected` method to determine whether a connection has been established.
+> Use the `startConnect` method to connect to the body fat scale, use the` onStateChanged` method to monitor the status of the connection, and use the `onError` method to monitor for exceptions during the connection process, in order to facilitate additional processing and troubleshooting. Use the `isDeviceConnected` method to determine whether a connection has been established.
 
-## 6 Successful connection, accept the data returned by the scale
+##   Successful connection, accept the data returned by the scale
 The following methods or interfaces are automatically obtained directly after inheriting the BleProfileServiceReadyActivity class
 
 ```
@@ -222,26 +235,27 @@ The following methods or interfaces are automatically obtained directly after in
     
 
 ```
-Note: Some of these interfaces or methods require APP to issue commands to body fat to return data.
+> Note: Some of these interfaces or methods require APP to issue commands to body fat to return data.
 
-## 7 Call the algorithm to calculate the data in the SDK
-AicareBleConfig contains algorithms related to body fat data that can be called
+##   Call the algorithm to calculate the data in the SDK
+- If the device returns impedance, and there is no body fat data, you can obtain the BodyFatData object by inheriting the onGetFatData method in BleProfileServiceReadyActivity, and call the AicareBleConfig.getBodyFatData method to calculate the cn.net.aicare.algorithmutil.BodyFatData object
+Instructions:
 ```
-If the device returns impedance, there is no body fat data that can be calculated by calling the getBodyFatData method, and the algorithm can be obtained by calling the algorithm on the data in the BodyFatData object.
-as follows:
-AicareBleConfig.getBodyFatData (AlgorithmUtil.AlgorithmType.TYPE_AIC
-ARE, bodyFatData.getSex (), bodyFatData.getAge (),
-Double.valueOf (ParseData.getKgWeight (bodyFatData.getWeight (),
-bodyFatData.getDecimalInfo ())), bodyFatData .getHeight (),
-bodyFatData.getAdc ());
-
-If you need to obtain 6 additional physical indicators such as fat-free weight and weight control, please call getMoreFatData to get a MoreFatData object.
+AicareBleConfig.getBodyFatData(AlgorithmUtil.AlgorithmType.TYPE_AIC
+ARE, bodyFatData.getSex(), bodyFatData.getAge(),
+Double.valueOf(ParseData.getKgWeight(bodyFatData.getWeight(),
+bodyFatData.getDecimalInfo())), bodyFatData .getHeight(),
+bodyFatData.getAdc());
+```
+- If you need to get 6 additional body indicators such as body fat removal and weight control, please call AicareBleConfig.getMoreFatData to get MoreFatData object
+Instructions:
+```
 AicareBleConfig.getMoreFatData (int sex, int height, double weight,
 double bfr, double rom, double pp)
 
 ```
 
-## 8 Give instructions to the device
+##   Give instructions to the device
 Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServiceBinded (WBYService.WBYBinder binder), and call the method in binder
 
 ```
@@ -374,20 +388,18 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
     
 ```
 
-## 9 Class description
+##   Class description
 
-//aicare.net.cn.iweightlibrary.entity:
-
-#### 1.AlgorithmInfo (Algorithm Sequence Information)
+- aicare.net.cn.iweightlibrary.entity.AlgorithmInfo (Algorithm Sequence Information)
 
 ```
 Type  Parameter  //Description
-double weight   // weight 
+double weight   // weight
 int   algorithmId  //algorithm ID
 int   adc         // impedance value
 DecimalInfo decimalInfo //number of decimal places
 ```
-####  2.BM09Data (BM09 data)
+- BM09Data (BM09 data)
 
 ```
 Type Parameter  //Description
@@ -406,12 +418,12 @@ long timeMillis //measurement timestamp
 whether boolean //isStable is stable
 
 ```
-####  3.BM15Data (BM15 data)
+- BM15Data (BM15 data)
 ```
 Type Parameter name //Description
 String version //Bluetooth version
 int agreementType //agreementType
-int unitType    //unitType 
+int unitType    //unitType
 double weight   // weight
 int adc //impedance value
 double temp //temperature (if temp = 6553.5, the scale does not support temperature)
@@ -420,14 +432,14 @@ int did //(currently useless)
 int bleType// Bluetooth type (0x15)
 String address// device address
 ```
-####  4.BodyFatData
+- BodyFatData
 ```
 Type Parameter // Description
 String date //measurement date
 String time //time
 double weight //weight
-double bmi 
-double bfr 
+double bmi
+double bfr
 double sfr
 int uvi //visceral fat index
 double rom //muscle rate
@@ -442,7 +454,7 @@ int age //(1; male; 2, female)
 int height
 int adc  //impedance value
 ```
-####  5.BroadData (broadcast data)
+- BroadData (broadcast data)
 ```
 Type Parameter  Description
 String name //device name
@@ -452,7 +464,7 @@ int rssi //signal value
 byte [] specificData //broadcast data
 int deviceType //device type
 ```
-####  6.DecimalInfo (decimal point information)
+- DecimalInfo (decimal point information)
 ```
 Type Parameter  Description
 int sourceDecimal // source data decimal places
@@ -462,7 +474,7 @@ int stDecimal //st number of decimal places
 int kg //Graduation kg
 int lb //Graduation lb
 ```
-####  7.User (User Information)
+- User (User Information)
 ```
 Type Parameter name Description
 int id
@@ -472,7 +484,7 @@ int height
 int weight
 int adc //impedance (deprecated)
 ```
-####  8.WeightData (weight data)
+- WeightData (weight data)
 ```
 Type Parameter name Description
 int cmdType //command type (1, change; 2, stable; 3, in impedance measurement)
@@ -482,10 +494,10 @@ double temp //temperature (if the temperature is Double.MAX_VALUE, the scale doe
 DecimalInfo decimalInfo
 int adc //impedance value
 int algorithmType // algorithm ID
-int unitType 
+int unitType
 int deviceType //device type
 ```
-#### 9.cn.net.aicare.algorithmutil.BodyFatData(Calculated body fat data)
+- cn.net.aicare.algorithmutil.BodyFatData(Calculated body fat data)
 ```
 Type Parameter name Description
 double bmi;	Body mass index
@@ -500,7 +512,7 @@ int bodyAge;  physical bodyAge
 double pp;  protein percentage
 ```
 
-#### 10.MoreFatData
+- MoreFatData
 ```
 Type Parameter name Description
 double standardWeight;	Standard weight
@@ -518,7 +530,7 @@ public static enum FatLevel {
         FAT;  overweight
 }
 ```
-#### 11.BleProfileService Connection Status
+- BleProfileService Connection Status
 ```
 public static final int STATE_CONNECTING = 4; // connecting
 public static final int STATE_DISCONNECTED = 0; // disconnect
@@ -527,7 +539,7 @@ public static final int STATE_SERVICES_DISCOVERED = 2; // Discover services
 public static final int STATE_INDICATION_SUCCESS = 3; // Enable success
 public static final int STATE_TIME_OUT = 5; // connection timed out
 ```
-#### 12.AicareBleConfig.SettingStatus Status information returned by the device
+- AicareBleConfig.SettingStatus Status information returned by the device
 ```
         int NORMAL = 0; // Normal
         int LOW_POWER = 1; // Low power
@@ -557,11 +569,51 @@ public static final int STATE_TIME_OUT = 5; // connection timed out
         int DATA_SEND_END = 25; // Measured data transmission is complete
         int UNKNOWN = -1; // unknown
 ```
-#### 13.WBYService Bluetooth information returned by the device
+- WBYService Bluetooth information returned by the device
 ```
     public final static int BLE_VERSION = 0; // Bluetooth version
     public final static int MCU_DATE = 1; // mcu date
     public final static int MCU_TIME = 2; // mcu time
     public final static int USER_ID = 3; // user number
     public final static int ADC = 4; // impedance value
+```
+## FAQ
+
+- How to judge whether the currently scanned BroadData (device) is a broadcast scale or a connected scale?
+According to the value of deviceType attribute of BroadData:
+deviceType == AicareBleConfig.TYPE_WEI_BROAD is a broadcast scale without temperature
+deviceType == AicareBleConfig.TYPE_WEI_TEMP_BROAD is a broadcast scale with temperature
+deviceType == AicareBleConfig.TYPE_WEI is a connected scale without temperature
+deviceType == AicareBleConfig.TYPE_WEI_TEMP is a connected scale with temperature
+
+- Which units does the Bluetooth protocol support?
+Units only support up to 4 types (kg, lb, st, kg), please refer to the factory settings of the scale for specific units supported.
+
+- Can't scan the Bluetooth device?
+A. Check whether the permissions of the App are normal. The 6.0 and above systems must locate the permissions and need to manually obtain the permissions
+B. Check if the location service of the mobile phone is turned on, some mobile phones may need to turn on GPS
+C. Unplug the battery and restart the scale
+D. Whether it is connected by other mobile phones (when the scale is not connected, the Bluetooth icon on the weighing pan will continue to flash)
+
+- Which devices are supported?
+Support BM series connection scale, BM15 broadcast scale
+
+- How does the connected scale determine the end of measurement?
+OnGetFatData () method callback means the measurement is completed
+
+- How do broadcast scales determine the end of measurement?
+All the data of the broadcast scale is returned from getAicareDevice and parsed to get the WeightData object. GetCmdType () == 3 in WeightData indicates that the measurement is completed, please refer to the demo for details
+
+- The data displayed by the scale is inconsistent with the data received by the app
+A. The SDK will request decimals by default, and you can use getDecimalInfo () in WBYBinder to actively obtain decimals
+B.app needs to pass in DecimalInfo (decimal object) to calculate the weight
+```
+DecimalInfo {
+    private int sourceDecimal; // The source data decimal places
+    private int kgDecimal; // kg decimal places
+    private int lbDecimal; // lb decimal places
+    private int stDecimal; // st decimal places
+    private int kgGraduation; // kg division
+    private int lbGraduation; // lb division
+}
 ```
