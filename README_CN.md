@@ -8,6 +8,9 @@
 [English documentation](README.md)
 
 
+## 目录
+[toc]
+
 ## 概述
 - 什么是elink体脂秤SDK ?
 
@@ -22,9 +25,9 @@
 ## 使用条件
 1,最低版本 android4.4（API 19）
 2,设备所使用的蓝牙版本需要4.0及以上
+3,依赖环境androidx
 
-
-## 导入SDK
+## SDK集成
 
 
 ```
@@ -75,7 +78,7 @@ repositories {
 
 >  6.0及以上系统必须要定位权限，且需要手动获取权限
 
-## 开始集成
+## 开始接入
 
 > 首先给SDK配置key和secret，[申请地址](http://sdk.aicare.net.cn)
 ```
@@ -575,38 +578,63 @@ public static final int STATE_TIME_OUT = 5;//连接超时
     public final static int USER_ID = 3; //用户编号
     public final static int ADC = 4; //阻抗值
 ```
-
+## 版本历史
+|版本号|更新时间|作者|更新信息|
+|:----|:---|:-----|-----|
+|1.0|	2017/2/15|	Suzy|	初步版本|
+|1.0.1|	2017/7/31|	Suzy|	修复部分数据转换bug
+|1.0.2|	2017/9/11|	Suzy|	指令中的类型根据实际连上的设备类型设置
+|1.0.3|	2017/11/16|	Suzy|	代码优化
+|1.0.4|	2018/7/12|	Suzy|	兼容广播秤
+|1.0.5|	2018/1/15|	Suzy|	兼容新协议
+|1.0.6|	2018/2/25|	Suzy|	功能优化
+|1.0.7|	2018/2/28|	Suzy|	封装小数点位数类
+|1.0.8|	2018/3/14|	Suzy|	修复身体年龄错误的bug
+|1.0.9|	2018/4/9|	Suzy|	兼容BM09协议
+|1.1.1|	2018/5/10|	Suzy|	兼容kg/lb分度协议
+|1.1.2|	2018/5/11|	Suzy|	解决st单位数据跟秤端显示不一致的bug
+|1.1.3|	2018/6/22|	Suzy|	解决小数点位数有时获取不到的bug
+|1.1.4|	2018/7/7|	Suzy|	兼容BM15协议
+|1.1.5|	2018/7/20|	Suzy|	兼容算法ID协议
+|1.1.7|	2019/04/30|	Stan|	添加BM15体脂数据计算算法
+|1.1.8|	2019/06/6|	Stan|	修改原始数据转lb ,st计算错误问题
+|1.1.9|	2019/12/19|	Xing|	增加历史记录
+|1.2.0|	2019/1/17|	Xing|	更新优化蓝牙库
+|1.2.1|	2020/3/19|	Xing|	增加体脂数据计算方法和去脂体重算法等
+|1.2.2|	2020/3/23|	Xing|	修改SDK为gradle形式依赖
+|1.2.3|	2020/4/2|	Xing|	增加key校验,修改依赖环境为androidx
+|1.2.4|	2020/4/10|	Xing|	修复已知bug
 
 ## FAQ
 
 - 如何判断区分当前扫描到的BroadData(设备)是广播秤还是连接秤？
-根据BroadData的deviceType属性值区分：
+1.根据BroadData的deviceType属性值区分：
 deviceType==AicareBleConfig.TYPE_WEI_BROAD是不带温度的广播秤
 deviceType==AicareBleConfig.TYPE_WEI_TEMP_BROAD是有温度的广播秤
 deviceType==AicareBleConfig.TYPE_WEI是不带温度的连接秤
 deviceType==AicareBleConfig.TYPE_WEI_TEMP是有温度的连接秤
 
 - 蓝牙协议支持哪些单位？
-单位最多只支持4种（kg，lb，st，斤），具体支持什么单位请参照秤的出厂设置。
+1.单位最多只支持4种（kg，lb，st，斤），具体支持什么单位请参照秤的出厂设置。
 
 - 扫描不到蓝牙设备？
-A.查看App权限是否正常,6.0及以上系统必须要定位权限，且需要手动获取权限
-B.查看手机的定位服务是否开启,部分手机可能需要打开GPS
-C.拔掉电池重启秤
-D.是否被其他手机连接(秤未被连接时，秤盘上蓝牙图标会不断闪烁)
+1.查看App权限是否正常,6.0及以上系统必须要定位权限，且需要手动获取权限
+2.查看手机的定位服务是否开启,部分手机可能需要打开GPS
+3.拔掉电池重启秤
+4.是否被其他手机连接(秤未被连接时，秤盘上蓝牙图标会不断闪烁)
 
 - 支持哪些设备？
-支持BM系列的连接秤、BM15广播秤
+1.支持BM系列的连接秤、BM15广播秤
 
 - 连接秤如何判定测量结束？
-onGetFatData()方法回调就代表测量完成
+1.onGetFatData()方法回调就代表测量完成
 
 - 广播秤如何判定测量结束？
-广播秤所有的数据都是从getAicareDevice返回并解析得到WeightData对象,WeightData中的getCmdType()==3表示测量完成,详细请参考demo
+1.广播秤所有的数据都是从getAicareDevice返回并解析得到WeightData对象,WeightData中的getCmdType()==3表示测量完成,详细请参考demo
 
 - 秤显示的数据和app收到的数据不一致
-A.SDK会默认请求获取小数的,可使用WBYBinder中的getDecimalInfo()主动获取小数位
-B.app计算重量的时候需要传入DecimalInfo(小数对象)进行计算
+1.SDK会默认请求获取小数的,可使用WBYBinder中的getDecimalInfo()主动获取小数位
+2.app计算重量的时候需要传入DecimalInfo(小数对象)进行计算
 ```
 DecimalInfo{
     private int sourceDecimal;//源数据小数位数
@@ -617,5 +645,24 @@ DecimalInfo{
     private int lbGraduation;//lb分度
 }
 ```
+- 为什么只能测到体重，没有其他体脂数据？
+1.必须脱掉鞋和袜子，光脚站在体脂秤的电极片上，才能测出体脂数据。
 
+- 称量时秤总是显示Error，app显示阻抗测量失败，是什么原因？
+1.脱掉鞋和袜子，光脚站在体脂秤的电极片上测量，就不会再显示Error。
 
+- 如何高效的向技术支持人员提供反馈？
+1.SDK会在控制台打印log，反馈问题时请先将log保存为txt，发给技术人员
+2.反馈问题时，尽可能将问题出现时的前后操作描述清楚，最好能录制视频告知问题如何复现。
+
+- 是否有各项体脂数据的判定标准和文案呢？
+1.体脂判定标准各厂商标准都可能不一样，目前并没有行业公认的参考标准。如下是我司使用的标准，仅供参考： [《蓝牙体脂秤判定标准及小程序文案20200416》](https://shimo.im/sheets/8dGqCgyhX9P6Xpcw/GX3qk/)
+
+## 联系我们
+深圳市易连物联网有限公司
+
+电话：0755-81773367
+
+官网：www.elinkthings.com
+
+邮箱：app@elinkthings.com

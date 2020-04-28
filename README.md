@@ -8,6 +8,8 @@
 
 [中文文档](README_CN.md)
 
+## Contents
+[toc]
 
 ## Overview
 - What is elink body fat scale SDK?
@@ -78,7 +80,7 @@ You can also use aar package dependency,Please download it into the project's li
 
 > 6.0 and above systems need to locate permissions and need to obtain permissions manually
 
-##   start integration
+##   Start access
 > First configure the key and secret for the SDK, [application address](http://sdk.aicare.net.cn)
 ```
   // Called in the application of the main project
@@ -577,36 +579,64 @@ public static final int STATE_TIME_OUT = 5; // connection timed out
     public final static int USER_ID = 3; // user number
     public final static int ADC = 4; // impedance value
 ```
+
+## Version History
+| Version number | Update time | Author | Update information |
+|: ---- |: --- |: ----- | ----- |
+| 1.0 | 2017/2/15 | Suzy | Preliminary version |
+| 1.0.1 | 2017/7/31 | Suzy | Fix some data conversion bugs
+| 1.0.2 | 2017/9/11 | Suzy | The type in the instruction is set according to the type of device actually connected
+| 1.0.3 | 2017/11/16 | Suzy | Code optimization
+| 1.0.4 | 2018/7/12 | Suzy | compatible broadcast scale
+| 1.0.5 | 2018/1/15 | Suzy | New protocol compatible
+| 1.0.6 | 2018/2/25 | Suzy | Function optimization
+| 1.0.7 | 2018/2/28 | Suzy | Encapsulated decimal point class
+| 1.0.8 | 2018/3/14 | Suzy | Fix the bug of wrong body age
+| 1.0.9 | 2018/4/9 | Suzy | Compatible with BM09 protocol
+| 1.1.1 | 2018/5/10 | Suzy | Compatible with kg / lb indexing protocol
+| 1.1.2 | 2018/5/11 | Suzy | Solve the bug that the st unit data is inconsistent with the scale display
+| 1.1.3 | 2018/6/22 | Suzy | Solve the bug that the decimal point is sometimes not available
+| 1.1.4 | 2018/7/7 | Suzy | Compatible with BM15 protocol
+| 1.1.5 | 2018/7/20 | Suzy | Compatible algorithm ID protocol
+| 1.1.7 | 2019/04/30 | Stan | Add BM15 body fat data calculation algorithm
+| 1.1.8 | 2019/06/6 | Stan | Modify the original data to lb, st calculation error problem
+| 1.1.9 | 2019/12/19 | Xing | Add history
+| 1.2.0 | 2019/1/17 | Xing | Update and optimize Bluetooth library
+| 1.2.1 | 2020/3/19 | Xing | Increase the calculation method of body fat data and the algorithm of lean body mass etc.
+| 1.2.2 | 2020/3/23 | Xing | Modify SDK to gradle form dependency
+| 1.2.3 | 2020/4/2 | Xing | Add key verification, modify the dependent environment to androidx
+| 1.2.4 | 2020/4/10 | Xing | Fix known bugs
+
 ## FAQ
 
 - How to judge whether the currently scanned BroadData (device) is a broadcast scale or a connected scale?
-According to the value of deviceType attribute of BroadData:
+1. According to the value of deviceType attribute of BroadData:
 deviceType == AicareBleConfig.TYPE_WEI_BROAD is a broadcast scale without temperature
 deviceType == AicareBleConfig.TYPE_WEI_TEMP_BROAD is a broadcast scale with temperature
 deviceType == AicareBleConfig.TYPE_WEI is a connected scale without temperature
 deviceType == AicareBleConfig.TYPE_WEI_TEMP is a connected scale with temperature
 
 - Which units does the Bluetooth protocol support?
-Units only support up to 4 types (kg, lb, st, kg), please refer to the factory settings of the scale for specific units supported.
+1. Units only support up to 4 types (kg, lb, st, kg), please refer to the factory settings of the scale for specific units supported.
 
-- Can't scan the Bluetooth device?
-A. Check whether the permissions of the App are normal. The 6.0 and above systems must locate the permissions and need to manually obtain the permissions
-B. Check if the location service of the mobile phone is turned on, some mobile phones may need to turn on GPS
-C. Unplug the battery and restart the scale
-D. Whether it is connected by other mobile phones (when the scale is not connected, the Bluetooth icon on the weighing pan will continue to flash)
+-Can't scan the Bluetooth device?
+1. Check whether the permissions of the App are normal. The 6.0 and above systems must locate the permissions and need to manually obtain the permissions
+2. Check whether the location service of the mobile phone is turned on, some mobile phones may need to turn on the GPS
+3. Unplug the battery and restart the scale
+4. Whether it is connected by other mobile phones (when the scale is not connected, the Bluetooth icon on the weighing pan will continue to flash)
 
 - Which devices are supported?
-Support BM series connection scale, BM15 broadcast scale
+1. Support BM series connection scale, BM15 broadcast scale
 
 - How does the connected scale determine the end of measurement?
-OnGetFatData () method callback means the measurement is completed
+1. OnGetFatData () method callback means the measurement is completed
 
 - How do broadcast scales determine the end of measurement?
-All the data of the broadcast scale is returned from getAicareDevice and parsed to get the WeightData object. GetCmdType () == 3 in WeightData indicates that the measurement is completed, please refer to the demo for details
+1. All the data of the broadcast scale is returned from getAicareDevice and parsed to get the WeightData object. GetCmdType () == 3 in WeightData means the measurement is completed, please refer to the demo for details
 
-- The data displayed by the scale is inconsistent with the data received by the app
-A. The SDK will request decimals by default, and you can use getDecimalInfo () in WBYBinder to actively obtain decimals
-B.app needs to pass in DecimalInfo (decimal object) to calculate the weight
+-The data displayed by the scale is inconsistent with the data received by the app
+1. The SDK will request decimals by default, and you can use getDecimalInfo () in WBYBinder to actively obtain decimals
+2. When the app calculates the weight, it needs to pass in DecimalInfo (decimal object) for calculation
 ```
 DecimalInfo {
     private int sourceDecimal; // The source data decimal places
@@ -617,3 +647,26 @@ DecimalInfo {
     private int lbGraduation; // lb division
 }
 ```
+- Why can I only measure my weight and no other body fat data?
+1. You must take off your shoes and socks and stand barefoot on the electrode pads of the body fat scale to measure body fat data.
+
+- When weighing, the scale always displays Error, and the app shows that the impedance measurement has failed. What is the reason?
+1. Take off your shoes and socks and barefoot stand on the electrode pad of the body fat scale to measure, and then Error will no longer be displayed.
+
+- How to provide feedback to technical support staff efficiently?
+1. The SDK will print the log on the console, please save the log as txt and send it to the technical staff when feedback the problem
+2. When feeding back the problem, describe the operation before and after the problem as clearly as possible. It is best to record a video to tell how to reproduce the problem.
+
+- Are there any criteria and copy for body fat data?
+1. Body fat determination standards may vary from manufacturer to manufacturer, and there is currently no industry-recognized reference standard. The following are the standards used by our company for reference only: [《Bluetooth Body Fat Scale Judgment Standard and Mini Program Copy 20200416》](https://shimo.im/sheets/8dGqCgyhX9P6Xpcw/GX3qk/)
+
+
+
+## contact us
+Shenzhen Yilian Internet of Things Co., Ltd.
+
+Phone: 0755-81773367
+
+Official website: www.elinkthings.com
+
+Email: app@elinkthings.com
