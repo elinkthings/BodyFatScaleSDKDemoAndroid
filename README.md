@@ -594,17 +594,17 @@ public static final int STATE_TIME_OUT = 5; // connection timed out
 ```
 
 ## Version History
-| Version number | Update time | Author | Update information |
-|: ---- |: --- |: ----- | ----- |
-| 1.0 | 2017/2/15 | Suzy | Preliminary version |
-| 1.0.1 | 2017/7/31 | Suzy | Fix some data conversion bugs
-| 1.0.2 | 2017/9/11 | Suzy | The type in the instruction is set according to the type of device actually connected
+| Version number | Update time | Author | Update information
+| ---- | --- | ----- | -----
+| 1.0   | 2017/02/15 | Suzy | Preliminary version
+| 1.0.1 | 2017/07/31 | Suzy | Fix some data conversion bugs
+| 1.0.2 | 2017/09/11 | Suzy | The type in the instruction is set according to the type of device actually connected
 | 1.0.3 | 2017/11/16 | Suzy | Code optimization
-| 1.0.4 | 2018/7/12 | Suzy | compatible broadcast scale
-| 1.0.5 | 2018/1/15 | Suzy | New protocol compatible
-| 1.0.6 | 2018/2/25 | Suzy | Function optimization
-| 1.0.7 | 2018/2/28 | Suzy | Encapsulated decimal point class
-| 1.0.8 | 2018/3/14 | Suzy | Fix the bug of wrong body age
+| 1.0.4 | 2018/07/12 | Suzy | compatible broadcast scale
+| 1.0.5 | 2018/01/15 | Suzy | New protocol compatible
+| 1.0.6 | 2018/02/25 | Suzy | Function optimization
+| 1.0.7 | 2018/02/28 | Suzy | Encapsulated decimal point class
+| 1.0.8 | 2018/03/14 | Suzy | Fix the bug of wrong body age
 | 1.0.9 | 2018/4/9 | Suzy | Compatible with BM09 protocol
 | 1.1.1 | 2018/5/10 | Suzy | Compatible with kg / lb indexing protocol
 | 1.1.2 | 2018/5/11 | Suzy | Solve the bug that the st unit data is inconsistent with the scale display
