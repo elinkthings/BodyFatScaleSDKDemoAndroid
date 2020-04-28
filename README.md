@@ -594,9 +594,9 @@ public static final int STATE_TIME_OUT = 5; // connection timed out
 ```
 
 ## Version History
-| Version number | Update time | Author | Update information |
-|: ---- |: --- |: ----- | ----- |
-| 1.0 | 2017/2/15 | Suzy | Preliminary version |
+| Version number | Update time | Author | Update information 
+|: ---- |: --- |: ----- | ----- 
+| 1.0 | 2017/2/15 | Suzy | Preliminary version 
 | 1.0.1 | 2017/7/31 | Suzy | Fix some data conversion bugs
 | 1.0.2 | 2017/9/11 | Suzy | The type in the instruction is set according to the type of device actually connected
 | 1.0.3 | 2017/11/16 | Suzy | Code optimization
