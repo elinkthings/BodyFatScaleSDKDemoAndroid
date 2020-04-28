@@ -405,6 +405,7 @@ double bfr, double rom, double pp)
 ## 类说明
 
  - aicare.net.cn.iweightlibrary.entity.AlgorithmInfo(算法序列信息)
+
 |类型|	参数名|	说明
 |---|---|---
 |double	| weight			|体重
@@ -415,6 +416,7 @@ double bfr, double rom, double pp)
 
 
 - BM09Data(BM09数据)
+
 |类型|	参数名|	说明
 |---|---|---
 |int	| agreementType	|协议类型
@@ -433,6 +435,7 @@ double bfr, double rom, double pp)
 
 
 - BM15Data(BM15数据)
+
 |类型|	参数名|	说明
 |---|---|---
 |String	| version		|蓝牙版本
@@ -448,6 +451,7 @@ double bfr, double rom, double pp)
 
 
 - BodyFatData(体脂数据)
+
 |类型|	参数名|	说明
 |---|---|---
 |String	|date	|测量日期
@@ -472,6 +476,7 @@ double bfr, double rom, double pp)
 
 
 - BroadData(广播数据)
+
 |类型|	参数名|	说明
 |---|---|---
 |String		|name			|设备名
@@ -483,6 +488,7 @@ double bfr, double rom, double pp)
 
 
 - DecimalInfo(小数点位数信息)
+
 |类型|	参数名|	说明
 |---|---|---
 |int|	sourceDecimal	|源数据小数点位数
@@ -494,6 +500,7 @@ double bfr, double rom, double pp)
 
 
 - User(用户信息)
+
 |类型|	参数名|	说明
 |---|---|---
 |int|id		|编号
@@ -505,6 +512,7 @@ double bfr, double rom, double pp)
 
 
 - WeightData(体重数据)
+
 |类型|	参数名|	说明
 |---|---|---
 |int|	cmdType|	命令类型（1、变化；2、稳定；3、阻抗测量中）
@@ -518,6 +526,7 @@ double bfr, double rom, double pp)
 
 
 - cn.net.aicare.algorithmutil.BodyFatData(计算得到的体脂数据)
+
 |类型|	参数名|	说明
 |---|---|---
 |double| bmi|身体质量指数
@@ -534,6 +543,7 @@ double bfr, double rom, double pp)
 
 
 - MoreFatData
+
 |类型|	参数名|	说明
 |---|---|---
 |double| standardWeight|	标准体重
@@ -556,6 +566,7 @@ public static enum FatLevel {
 
 
 - BleProfileService 连接状态
+
 ```
 public static final int STATE_CONNECTING = 4; //连接中
 public static final int STATE_DISCONNECTED = 0; //断开连接
@@ -565,6 +576,7 @@ public static final int STATE_INDICATION_SUCCESS = 3;//使能成功
 public static final int STATE_TIME_OUT = 5;//连接超时
 ```
 - AicareBleConfig.SettingStatus 设备返回的状态信息
+
 ```
 int NORMAL = 0;//正常
 int LOW_POWER = 1;//低功耗
@@ -595,6 +607,7 @@ int DATA_SEND_END = 25;//测量数据发送完成
 int UNKNOWN = -1;//未知
 ```
 - WBYService 设备返回的蓝牙信息
+
 ```
 public final static int BLE_VERSION = 0; //蓝牙版本
 public final static int MCU_DATE = 1;  //mcu日期

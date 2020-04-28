@@ -436,6 +436,7 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
 
 
 - BM15Data (BM15 data)
+
 |Type | Parameter |Description
 |---|---|---
 |String |version|Bluetooth version
@@ -451,6 +452,7 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
 
 
 - BodyFatData
+
 |Type | Parameter |Description
 |---|---|---
 |String |date|measurement date
@@ -474,6 +476,7 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
 
 
 - BroadData (broadcast data)
+
 |Type | Parameter |Description
 |---|---|---
 |String| name|device name
@@ -485,6 +488,7 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
 
 
 - DecimalInfo (decimal point information)
+
 |Type | Parameter |Description
 |---|---|---
 |int |sourceDecimal|source data decimal places
@@ -496,6 +500,7 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
 
 
 - User (User Information)
+
 |Type | Parameter |Description
 |---|---|---
 |int| id|
@@ -508,6 +513,7 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
 
 
 - WeightData (weight data)
+
 |Type | Parameter |Description
 |---|---|---
 |int |cmdType|command type (1, change; 2, stable; 3, in impedance measurement)
@@ -522,6 +528,7 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
 
 
 - cn.net.aicare.algorithmutil.BodyFatData(Calculated body fat data)
+
 |Type | Parameter |Description
 |---|---|---
 |double| bmi|	Body mass index
@@ -539,6 +546,7 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
 
 
 - MoreFatData
+
 |Type | Parameter |Description
 |---|---|---
 |double| standardWeight|	Standard weight
@@ -558,6 +566,7 @@ public static enum FatLevel {
 }
 ```
 - BleProfileService Connection Status
+
 ```
 public static final int STATE_CONNECTING = 4; // connecting
 public static final int STATE_DISCONNECTED = 0; // disconnect
@@ -567,6 +576,7 @@ public static final int STATE_INDICATION_SUCCESS = 3; // Enable success
 public static final int STATE_TIME_OUT = 5; // connection timed out
 ```
 - AicareBleConfig.SettingStatus Status information returned by the device
+
 ```
 int NORMAL = 0; // Normal
 int LOW_POWER = 1; // Low power
@@ -597,6 +607,7 @@ int DATA_SEND_END = 25; // Measured data transmission is complete
 int UNKNOWN = -1; // unknown
 ```
 - WBYService Bluetooth information returned by the device
+
 ```
 public final static int BLE_VERSION = 0; // Bluetooth version
 public final static int MCU_DATE = 1; // mcu date
