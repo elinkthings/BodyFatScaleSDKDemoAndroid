@@ -9,7 +9,20 @@
 [中文文档](README_CN.md)
 
 ## Contents
-[toc]
+* Overview
+* Conditions of Use
+* Import SDK
+* permission settings
+* Start access
+* scan the device, stop scanning the device, check the scan status
+* connect the device, disconnect the device
+* Successful connection, accept the data returned by the scale
+* Call the algorithm to calculate the data in the SDK
+* Give instructions to the device
+* Class description
+* Version History
+* FAQ
+* Contact Us
 
 ## Overview
 - What is elink body fat scale SDK?
@@ -662,7 +675,7 @@ DecimalInfo {
 
 
 
-## contact us
+## Contact Us
 Shenzhen Yilian Internet of Things Co., Ltd.
 
 Phone: 0755-81773367

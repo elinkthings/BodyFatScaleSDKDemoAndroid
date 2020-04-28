@@ -7,9 +7,21 @@
 [key申请地址](http://sdk.aicare.net.cn)
 [English documentation](README.md)
 
-
 ## 目录
-[toc]
+- 概述
+- 使用条件
+- SDK集成
+- 权限设置
+- 开始接入
+- 扫描设备，停止扫描设备,查看扫描状态
+- 连接设备，断开设备
+- 连接成功，接受秤返回的数据
+- 调用SDK中的算法库
+- APP给设备下发指令
+- 类说明
+- 版本历史
+- FAQ
+- 联系我们
 
 ## 概述
 - 什么是elink体脂秤SDK ?
