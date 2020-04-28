@@ -407,141 +407,153 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
 
 - aicare.net.cn.iweightlibrary.entity.AlgorithmInfo (Algorithm Sequence Information)
 
-```
-Type  Parameter  //Description
-double weight   // weight
-int   algorithmId  //algorithm ID
-int   adc         // impedance value
-DecimalInfo decimalInfo //number of decimal places
-```
+
+|Type | Parameter |Description
+|---|---|---
+|double |weight  | weight
+|int |  algorithmId  |algorithm ID
+|int  | adc         | impedance value
+|DecimalInfo| decimalInfo|number of decimal places
+
+
 - BM09Data (BM09 data)
 
-```
-Type Parameter  //Description
-int agreementType //agreement type
-int unitType   //unit type
-DecimalInfo decimalInfo //Decimal places
-double weight //Weight
-int adc //impedance value
-double temp //temperature
-int algorithmId //algorithm ID
-int did //(currently useless)
-String bleVersion //Bluetooth version
-int bleType //Bluetooth type (0x09)
-String address //device address
-long timeMillis //measurement timestamp
-whether boolean //isStable is stable
+|Type | Parameter |Description
+|---|---|---
+|int |agreementType|agreement type
+|int| unitType|unit type
+|DecimalInfo| decimalInfo|Decimal places
+|double| weight|Weight
+|int| adc|impedance value
+|double| temp|temperature
+|int |algorithmId|algorithm ID
+|int |did|currently useless
+|String |bleVersion|Bluetooth version
+|int| bleType|Bluetooth type (0x09)
+|String |address|device address
+|long |timeMillis |measurement timestamp
+|whether |boolean |isStable is stable
 
-```
+
 - BM15Data (BM15 data)
-```
-Type Parameter name //Description
-String version //Bluetooth version
-int agreementType //agreementType
-int unitType    //unitType
-double weight   // weight
-int adc //impedance value
-double temp //temperature (if temp = 6553.5, the scale does not support temperature)
-int algorithmId //algorithm ID
-int did //(currently useless)
-int bleType// Bluetooth type (0x15)
-String address// device address
-```
-- BodyFatData
-```
-Type Parameter // Description
-String date //measurement date
-String time //time
-double weight //weight
-double bmi
-double bfr
-double sfr
-int uvi //visceral fat index
-double rom //muscle rate
-double bmr //basal metabolic rate
-double bm //bone mass
-double vwc //moisture content
-double bodyAge //
-double pp //protein rate
-int number
-int sex
-int age //(1; male; 2, female)
-int height
-int adc  //impedance value
-```
-- BroadData (broadcast data)
-```
-Type Parameter  Description
-String name //device name
-String address //device address
-boolean isBright //Whether the screen is bright
-int rssi //signal value
-byte [] specificData //broadcast data
-int deviceType //device type
-```
-- DecimalInfo (decimal point information)
-```
-Type Parameter  Description
-int sourceDecimal // source data decimal places
-int kgDecimal //kg number of decimal places
-int lbDecimal //lb decimal places
-int stDecimal //st number of decimal places
-int kg //Graduation kg
-int lb //Graduation lb
-```
-- User (User Information)
-```
-Type Parameter name Description
-int id
-int sex
-int age //(1; male; 2, female)
-int height
-int weight
-int adc //impedance (deprecated)
-```
-- WeightData (weight data)
-```
-Type Parameter name Description
-int cmdType //command type (1, change; 2, stable; 3, in impedance measurement)
-double weight
-double temp //temperature (if the temperature is Double.MAX_VALUE, the scale does not support temperature)
+|Type | Parameter |Description
+|---|---|---
+|String |version|Bluetooth version
+|int| agreementType|agreementType
+|int| unitType|unitType
+|double |weight|weight
+|int| adc|impedance value
+|double| temp |temperature (if temp = 6553.5, the scale does not support temperature)
+|int |algorithmId |algorithm ID
+|int |did |currently useless
+|int| bleType|Bluetooth type (0x15)
+|String |address|device address
 
-DecimalInfo decimalInfo
-int adc //impedance value
-int algorithmType // algorithm ID
-int unitType
-int deviceType //device type
-```
+
+- BodyFatData
+|Type | Parameter |Description
+|---|---|---
+|String |date|measurement date
+|String |time|time
+|double |weight|weight
+|double |bmi|
+|double |bfr|
+|double |sfr|
+|int |uvi|visceral fat index
+|double| rom|muscle rate
+|double| bmr |basal metabolic rate
+|double| bm |bone mass
+|double| vwc |moisture content
+|double| bodyAge |
+|double| pp |protein rate
+|int| number
+|int |sex
+|int |age |(1; male; 2, female)
+|int |height
+|int| adc|impedance value
+
+
+- BroadData (broadcast data)
+|Type | Parameter |Description
+|---|---|---
+|String| name|device name
+|String |address|device address
+|boolean |isBright|Whether the screen is bright
+|int| rssi|signal value
+|byte |[] specificData|broadcast data
+|int |deviceType|device type
+
+
+- DecimalInfo (decimal point information)
+|Type | Parameter |Description
+|---|---|---
+|int |sourceDecimal|source data decimal places
+|int |kgDecimal|kg number of decimal places
+|int |lbDecimal|lb decimal places
+|int |stDecimal|st number of decimal places
+|int |kg|Graduation kg
+|int| lb|Graduation lb
+
+
+- User (User Information)
+|Type | Parameter |Description
+|---|---|---
+|int| id|
+|int |sex|
+|int |age |(1; male; 2, female)
+|int |height|
+|int |weight|
+|int |adc|impedance (deprecated)
+
+
+
+- WeightData (weight data)
+|Type | Parameter |Description
+|---|---|---
+|int |cmdType|command type (1, change; 2, stable; 3, in impedance measurement)
+|double| weight|
+|double| temp |temperature (if the temperature is Double.MAX_VALUE, the scale does not support temperature)
+|DecimalInfo| decimalInfo
+|int |adc|impedance value
+|int |algorithmType|algorithm ID
+|int |unitType|
+|int| deviceType|device type
+
+
+
 - cn.net.aicare.algorithmutil.BodyFatData(Calculated body fat data)
-```
-Type Parameter name Description
-double bmi;	Body mass index
-double bfr;	 body fat rate
-double sfr;	 Subcutaneous fat rate
-int uvi;	Visceral fat index
-double rom;  Rate of muscle
-int bmr;  basal metabolic rate
-double bm;  Bone Mass
-double vwc; Water content
-int bodyAge;  physical bodyAge
-double pp;  protein percentage
-```
+|Type | Parameter |Description
+|---|---|---
+|double| bmi|	Body mass index
+|double| bfr|	 body fat rate
+|double| sfr|	 Subcutaneous fat rate
+|int |uvi|	Visceral fat index
+|double| rom|  Rate of muscle
+|int| bmr|  basal metabolic rate
+|double| bm|  Bone Mass
+|double |vwc| Water content
+|int| bodyAge|  physical bodyAge
+|double |pp|  protein percentage
+
+
+
 
 - MoreFatData
+|Type | Parameter |Description
+|---|---|---
+|double| standardWeight|	Standard weight
+|double| controlWeight|	Weight control
+|double| fat|	Fat mass
+|double| removeFatWeight|	Fat-free weight
+|double| muscleMass| Muscle mass
+|double| protein| Protein amount
+|MoreFatData.FatLevel fatLevel| Obesity grade
 ```
-Type Parameter name Description
-double standardWeight;	Standard weight
-double controlWeight;	Weight control
-double fat;	Fat mass
-double removeFatWeight;	Fat-free weight
-double muscleMass; Muscle mass
-double protein; Protein amount
-MoreFatData.FatLevel fatLevel; Obesity grade
 public static enum FatLevel {
-        UNDER,  Underweight
-        THIN,   Thin
-        NORMAL,  standard
-        OVER,  Favor
+        UNDER, // Underweight
+        THIN,  // Thin
+        NORMAL, // standard
+        OVER, // Favor
         FAT;  overweight
 }
 ```
@@ -556,41 +568,41 @@ public static final int STATE_TIME_OUT = 5; // connection timed out
 ```
 - AicareBleConfig.SettingStatus Status information returned by the device
 ```
-        int NORMAL = 0; // Normal
-        int LOW_POWER = 1; // Low power
-        int LOW_VOLTAGE = 2; // Low voltage
-        int ERROR = 3; // overload
-        int TIME_OUT = 4; // timeout
-        int UNSTABLE = 5; // Unstable
-        int SET_UNIT_SUCCESS = 6; // Set unit success
-        int SET_UNIT_FAILED = 7; // Set unit failed
-        int SET_TIME_SUCCESS = 8; // Successfully set time
-        int SET_TIME_FAILED = 9; // Failed to set time
-        int SET_USER_SUCCESS = 10; // Set user successfully
-        int SET_USER_FAILED = 11; // Failed to set user
-        int UPDATE_USER_LIST_SUCCESS = 12; // Update user list successfully
-        int UPDATE_USER_LIST_FAILED = 13; // Update user list failed
-        int UPDATE_USER_SUCCESS = 14; // Update user successfully
-        int UPDATE_USER_FAILED = 15; // Update user failed
-        int NO_HISTORY = 16; // There is no historical data
-        int HISTORY_START_SEND = 17; // historical data starts to be sent
-        int HISTORY_SEND_OVER = 18; // historical data transmission is complete
-        int NO_MATCH_USER = 19; // No matching users
-        int ADC_MEASURED_ING = 20; // Impedance measurement
-        int ADC_ERROR = 21; // Impedance measurement failed
-        int REQUEST_DISCONNECT = 22; // The device requested to disconnect
-        int SET_DID_SUCCESS = 23; // DID set successfully
-        int SET_DID_FAILED = 24; // Set DID failed
-        int DATA_SEND_END = 25; // Measured data transmission is complete
-        int UNKNOWN = -1; // unknown
+int NORMAL = 0; // Normal
+int LOW_POWER = 1; // Low power
+int LOW_VOLTAGE = 2; // Low voltage
+int ERROR = 3; // overload
+int TIME_OUT = 4; // timeout
+int UNSTABLE = 5; // Unstable
+int SET_UNIT_SUCCESS = 6; // Set unit success
+int SET_UNIT_FAILED = 7; // Set unit failed
+int SET_TIME_SUCCESS = 8; // Successfully set time
+int SET_TIME_FAILED = 9; // Failed to set time
+int SET_USER_SUCCESS = 10; // Set user successfully
+int SET_USER_FAILED = 11; // Failed to set user
+int UPDATE_USER_LIST_SUCCESS = 12; // Update user list successfully
+int UPDATE_USER_LIST_FAILED = 13; // Update user list failed
+int UPDATE_USER_SUCCESS = 14; // Update user successfully
+int UPDATE_USER_FAILED = 15; // Update user failed
+int NO_HISTORY = 16; // There is no historical data
+int HISTORY_START_SEND = 17; // historical data starts to be sent
+int HISTORY_SEND_OVER = 18; // historical data transmission is complete
+int NO_MATCH_USER = 19; // No matching users
+int ADC_MEASURED_ING = 20; // Impedance measurement
+int ADC_ERROR = 21; // Impedance measurement failed
+int REQUEST_DISCONNECT = 22; // The device requested to disconnect
+int SET_DID_SUCCESS = 23; // DID set successfully
+int SET_DID_FAILED = 24; // Set DID failed
+int DATA_SEND_END = 25; // Measured data transmission is complete
+int UNKNOWN = -1; // unknown
 ```
 - WBYService Bluetooth information returned by the device
 ```
-    public final static int BLE_VERSION = 0; // Bluetooth version
-    public final static int MCU_DATE = 1; // mcu date
-    public final static int MCU_TIME = 2; // mcu time
-    public final static int USER_ID = 3; // user number
-    public final static int ADC = 4; // impedance value
+public final static int BLE_VERSION = 0; // Bluetooth version
+public final static int MCU_DATE = 1; // mcu date
+public final static int MCU_TIME = 2; // mcu time
+public final static int USER_ID = 3; // user number
+public final static int ADC = 4; // impedance value
 ```
 
 ## Version History
@@ -634,7 +646,7 @@ deviceType == AicareBleConfig.TYPE_WEI_TEMP is a connected scale with temperatur
 - Which units does the Bluetooth protocol support?
 1. Units only support up to 4 types (kg, lb, st, kg), please refer to the factory settings of the scale for specific units supported.
 
--Can't scan the Bluetooth device?
+- Can't scan the Bluetooth device?
 1. Check whether the permissions of the App are normal. The 6.0 and above systems must locate the permissions and need to manually obtain the permissions
 2. Check whether the location service of the mobile phone is turned on, some mobile phones may need to turn on the GPS
 3. Unplug the battery and restart the scale
@@ -649,7 +661,7 @@ deviceType == AicareBleConfig.TYPE_WEI_TEMP is a connected scale with temperatur
 - How do broadcast scales determine the end of measurement?
 1. All the data of the broadcast scale is returned from getAicareDevice and parsed to get the WeightData object. GetCmdType () == 3 in WeightData means the measurement is completed, please refer to the demo for details
 
--The data displayed by the scale is inconsistent with the data received by the app
+- The data displayed by the scale is inconsistent with the data received by the app
 1. The SDK will request decimals by default, and you can use getDecimalInfo () in WBYBinder to actively obtain decimals
 2. When the app calculates the weight, it needs to pass in DecimalInfo (decimal object) for calculation
 ```

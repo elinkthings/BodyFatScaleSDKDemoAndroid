@@ -4,11 +4,8 @@
 [![](https://jitpack.io/v/elinkthings/BodyFatScaleSDKRepositoryAndroid.svg)](https://jitpack.io/#elinkthings/BodyFatScaleSDKRepositoryAndroid)
 
 [aar包下载地址](https://github.com/elinkthings/BodyFatScaleSDKRepositoryAndroid/releases)
-
 [key申请地址](http://sdk.aicare.net.cn)
-
 [English documentation](README.md)
-
 
 ## 目录
 - 概述
@@ -408,136 +405,146 @@ double bfr, double rom, double pp)
 ## 类说明
 
  - aicare.net.cn.iweightlibrary.entity.AlgorithmInfo(算法序列信息)
-```
-类型	参数名	说明
-double	weight	体重
-int	algorithmId	算法ID
-int	adc	阻抗值
-DecimalInfo	decimalInfo	小数点位数
-```
+|类型|	参数名|	说明
+|---|---|---
+|double	| weight			|体重
+|int	| algorithmId	|算法ID
+|int	| adc			|阻抗值
+|DecimalInfo |	decimalInfo	|小数点位数
+
+
 
 - BM09Data(BM09数据)
-```
-类型	参数名	说明
-int	agreementType	协议类型
-int	unitType	单位类型
-DecimalInfo	decimalInfp	小数点位数
-double	weight	体重
-int	adc	阻抗值
-double	temp	温度
-int	algorithmId	算法ID
-int	did	（目前无用）
-String	bleVersion	蓝牙版本
-int	bleType	蓝牙类型（0x09）
-String	address	设备地址
-long	timeMillis	测量时间戳
-boolean	isStable	是否稳定
-```
+|类型|	参数名|	说明
+|---|---|---
+|int	| agreementType	|协议类型
+|int	| unitType		|单位类型
+|DecimalInfo |	decimalInfp|	小数点位数
+|double	 | weight	|体重
+|int	 | adc	|阻抗值
+|double	 | temp	|温度
+|int	 | algorithmId|	算法ID
+|int	 | did	|（目前无用）
+|String	 | bleVersion	|蓝牙版本
+|int	 | bleType	|蓝牙类型（0x09）
+|String	 | address	|设备地址
+|long	 | timeMillis	|测量时间戳
+|boolean | 	isStable	|是否稳定
+
+
 - BM15Data(BM15数据)
-```
-类型	参数名	说明
-String	version	蓝牙版本
-int	agreementType	协议类型
-int	unitType	单位类型
-double	weight	体重
-int	adc	阻抗值
-double	temp	温度（若temp=6553.5，则表示秤不支持温度）
-int	algorithmId	算法ID
-int	did	（目前无用）
-int	bleType	蓝牙类型（0x15）
-String	address	设备地址
-```
+|类型|	参数名|	说明
+|---|---|---
+|String	| version		|蓝牙版本
+|int	| agreementType	|协议类型
+|int	| unitType		|单位类型
+|double	| weight			|体重
+|int	| adc			|阻抗值
+|double	| temp			|温度（若temp=6553.5，则表示秤不支持温度）
+|int	| algorithmId	|算法ID
+|int	| did			|（目前无用）
+|int	| bleType		|蓝牙类型（0x15）
+|String	| address		|设备地址
+
 
 - BodyFatData(体脂数据)
-```
-类型	参数名	说明
-String	date	测量日期
-String	time	测量时间
-double	weight	体重
-double	bmi	身体质量指数
-double	bfr	体脂率
-double	sfr	皮下脂肪率
-int	uvi	内脏脂肪指数
-double	rom	肌肉率
-double	bmr	基础代谢率
-double	bm	骨量
-double	vwc	水分率
-double	bodyAge	身体年龄
-double	pp	蛋白率
-int	number	编号
-int	sex	性别
-int	age	年龄（1、男；2、女）
-int	height	身高
-int	adc	阻抗值
-```
+|类型|	参数名|	说明
+|---|---|---
+|String	|date	|测量日期
+|String	|time	|测量时间
+|double	|weight	|体重
+|double	|bmi	|身体质量指数
+|double	|bfr	|体脂率
+|double	|sfr	|皮下脂肪率
+|int	|uvi	|内脏脂肪指数
+|double	|rom	|肌肉率
+|double	|bmr	|基础代谢率
+|double	|bm		|骨量
+|double	|vwc	|水分率
+|double	|bodyAge|	身体年龄
+|double	|pp		|蛋白率
+|int	|number	|编号
+|int	|sex	|性别
+|int	|age	|年龄（1、男；2、女）
+|int	|height	|身高
+|int	|adc	|阻抗值
+
+
 
 - BroadData(广播数据)
-```
-类型	参数名	说明
-String	name	设备名
-String	address	设备地址
-boolean	isBright	是否亮屏
-int	rssi	信号值
-byte[]	specificData	广播数据
-int	deviceType	设备类型
-```
+|类型|	参数名|	说明
+|---|---|---
+|String		|name			|设备名
+|String		|address		|设备地址
+|boolean	|isBright		|是否亮屏
+|int		|rssi			|信号值
+|byte[]		|specificData	|广播数据
+|int		|deviceType		|设备类型
+
+
 - DecimalInfo(小数点位数信息)
-```
-类型	参数名	说明
-int	sourceDecimal	源数据小数点位数
-int	kgDecimal	kg小数点位数
-int	lbDecimal	lb小数点位数
-int	stDecimal	st小数点位数
-int	kgGraduation	kg分度
-int	lbGraduation	lb分度
-```
+|类型|	参数名|	说明
+|---|---|---
+|int|	sourceDecimal	|源数据小数点位数
+|int|	kgDecimal		|kg小数点位数
+|int|	lbDecimal		|lb小数点位数
+|int|	stDecimal		|st小数点位数
+|int|	kgGraduation	|kg分度
+|int|	lbGraduation	|lb分度
+
+
 - User(用户信息)
-```
-类型	参数名	说明
-int	id	编号
-int	sex	性别
-int	age	年龄（1、男；2、女）
-int	height	身高
-int	weight	体重
-int	adc	阻抗值（弃用）
-```
+|类型|	参数名|	说明
+|---|---|---
+|int|id		|编号
+|int|sex	|性别
+|int|age	|年龄（1、男；2、女）
+|int|height	|身高
+|int|weight	|体重
+|int|adc	|阻抗值（弃用）
+
+
 - WeightData(体重数据)
-```
-类型	参数名	说明
-int	cmdType	命令类型（1、变化；2、稳定；3、阻抗测量中）
-double	weight	体重
-double	temp	温度（若温度为Double.MAX_VALUE则表示秤不支持温度）
-DecimalInfo	decimalInfo	小数点位数信息
-int	adc	阻抗值
-int	algorithmType	算法ID
-int	unitType	单位类型
-int	deviceType	设备类型
-```
+|类型|	参数名|	说明
+|---|---|---
+|int|	cmdType|	命令类型（1、变化；2、稳定；3、阻抗测量中）
+|double|	weight|	体重
+|double|	temp	|温度（若温度为Double.MAX_VALUE则表示秤不支持温度）
+|DecimalInfo|	decimalInfo|	小数点位数信息
+|int|	adc	|阻抗值
+|int|	algorithmType|	算法ID
+|int|	unitType	|单位类型
+|int|	deviceType	|设备类型
+
+
 - cn.net.aicare.algorithmutil.BodyFatData(计算得到的体脂数据)
-```
-类型	参数名	说明
-double bmi;	身体质量指数
-double bfr;	体脂率 body fat rate
-double sfr;	皮下脂肪率 Subcutaneous fat rate
-int uvi;	内脏脂肪指数
-double rom; 肌肉率 Rate of muscle
-int bmr; 基础代谢率 basal metabolic rate
-double bm; 骨骼质量 Bone Mass
-double vwc; 水含量
-int bodyAge; 身体年龄 physical bodyAge
-double pp; 蛋白率 protein percentage
-```
+|类型|	参数名|	说明
+|---|---|---
+|double| bmi|身体质量指数
+|double| bfr|体脂率 body fat rate
+|double| sfr|皮下脂肪率 Subcutaneous fat rate
+|int| uvi|	内脏脂肪指数
+|double |rom| 肌肉率 Rate of muscle
+|int |bmr| 基础代谢率 basal metabolic rate
+|double |bm| 骨骼质量 Bone Mass
+|double| vwc| 水含量
+|int| bodyAge| 身体年龄 physical bodyAge
+|double |pp| 蛋白率 protein percentage
+
+
 
 - MoreFatData
+|类型|	参数名|	说明
+|---|---|---
+|double| standardWeight|	标准体重
+|double| controlWeight|	体重控制量
+|double| fat|	脂肪量
+|double| removeFatWeight|	去脂体重
+|double| muscleMass| 肌肉量
+|double| protein| 蛋白量
+|MoreFatData.FatLevel| fatLevel| 肥胖等级
+
 ```
-类型	参数名	说明
-double standardWeight;	标准体重
-double controlWeight;	体重控制量
-double fat;	脂肪量
-double removeFatWeight;	去脂体重
-double muscleMass; 肌肉量
-double protein; 蛋白量
-MoreFatData.FatLevel fatLevel; 肥胖等级
 public static enum FatLevel {
         UNDER,  体重不足
         THIN,   偏瘦
@@ -546,6 +553,8 @@ public static enum FatLevel {
         FAT;  超重
 }
 ```
+
+
 - BleProfileService 连接状态
 ```
 public static final int STATE_CONNECTING = 4; //连接中
@@ -557,41 +566,41 @@ public static final int STATE_TIME_OUT = 5;//连接超时
 ```
 - AicareBleConfig.SettingStatus 设备返回的状态信息
 ```
-        int NORMAL = 0;//正常
-        int LOW_POWER = 1;//低功耗
-        int LOW_VOLTAGE = 2;//低电压
-        int ERROR = 3;//超载
-        int TIME_OUT = 4;//超时
-        int UNSTABLE = 5;//称不稳定
-        int SET_UNIT_SUCCESS = 6;//设置单位成功
-        int SET_UNIT_FAILED = 7;//设置单位失败
-        int SET_TIME_SUCCESS = 8;//设置时间成功
-        int SET_TIME_FAILED = 9;//设置时间失败
-        int SET_USER_SUCCESS = 10;//设置用户成功
-        int SET_USER_FAILED = 11;//设置用户失败
-        int UPDATE_USER_LIST_SUCCESS = 12;//更新用户列表成功
-        int UPDATE_USER_LIST_FAILED = 13;//更新用户列表失败
-        int UPDATE_USER_SUCCESS = 14;//更新用户成功
-        int UPDATE_USER_FAILED = 15;//更新用户失败
-        int NO_HISTORY = 16;//没有历史数据
-        int HISTORY_START_SEND = 17;//历史数据开始发送
-        int HISTORY_SEND_OVER = 18;//历史数据发送完成
-        int NO_MATCH_USER = 19;//没有匹配的用户
-        int ADC_MEASURED_ING = 20;//阻抗测量中
-        int ADC_ERROR = 21;//阻抗测量失败
-        int REQUEST_DISCONNECT = 22;//设备请求断开
-        int SET_DID_SUCCESS = 23;//设置DID成功
-        int SET_DID_FAILED = 24;//设置DID失败
-        int DATA_SEND_END = 25;//测量数据发送完成
-        int UNKNOWN = -1;//未知
+int NORMAL = 0;//正常
+int LOW_POWER = 1;//低功耗
+int LOW_VOLTAGE = 2;//低电压
+int ERROR = 3;//超载
+int TIME_OUT = 4;//超时
+int UNSTABLE = 5;//称不稳定
+int SET_UNIT_SUCCESS = 6;//设置单位成功
+int SET_UNIT_FAILED = 7;//设置单位失败
+int SET_TIME_SUCCESS = 8;//设置时间成功
+int SET_TIME_FAILED = 9;//设置时间失败
+int SET_USER_SUCCESS = 10;//设置用户成功
+int SET_USER_FAILED = 11;//设置用户失败
+int UPDATE_USER_LIST_SUCCESS = 12;//更新用户列表成功
+int UPDATE_USER_LIST_FAILED = 13;//更新用户列表失败
+int UPDATE_USER_SUCCESS = 14;//更新用户成功
+int UPDATE_USER_FAILED = 15;//更新用户失败
+int NO_HISTORY = 16;//没有历史数据
+int HISTORY_START_SEND = 17;//历史数据开始发送
+int HISTORY_SEND_OVER = 18;//历史数据发送完成
+int NO_MATCH_USER = 19;//没有匹配的用户
+int ADC_MEASURED_ING = 20;//阻抗测量中
+int ADC_ERROR = 21;//阻抗测量失败
+int REQUEST_DISCONNECT = 22;//设备请求断开
+int SET_DID_SUCCESS = 23;//设置DID成功
+int SET_DID_FAILED = 24;//设置DID失败
+int DATA_SEND_END = 25;//测量数据发送完成
+int UNKNOWN = -1;//未知
 ```
 - WBYService 设备返回的蓝牙信息
 ```
-    public final static int BLE_VERSION = 0; //蓝牙版本
-    public final static int MCU_DATE = 1;  //mcu日期
-    public final static int MCU_TIME = 2;  //mcu 时间
-    public final static int USER_ID = 3; //用户编号
-    public final static int ADC = 4; //阻抗值
+public final static int BLE_VERSION = 0; //蓝牙版本
+public final static int MCU_DATE = 1;  //mcu日期
+public final static int MCU_TIME = 2;  //mcu 时间
+public final static int USER_ID = 3; //用户编号
+public final static int ADC = 4; //阻抗值
 ```
 ## 版本历史
 |版本号|更新时间|作者|更新信息|
