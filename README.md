@@ -690,7 +690,7 @@ DecimalInfo {
 
 
 ## Contact Us
-Shenzhen Yilian Internet of Things Co., Ltd.
+Shenzhen elink things Co., Ltd.
 
 Phone: 0755-81773367
 
