@@ -12,7 +12,7 @@
 
 ## 目录
 
-[toc]
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 ## 概述
 - 什么是elink体脂秤SDK ?
