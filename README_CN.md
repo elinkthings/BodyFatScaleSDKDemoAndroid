@@ -4,8 +4,11 @@
 [![](https://jitpack.io/v/elinkthings/BodyFatScaleSDKRepositoryAndroid.svg)](https://jitpack.io/#elinkthings/BodyFatScaleSDKRepositoryAndroid)
 
 [aar包下载地址](https://github.com/elinkthings/BodyFatScaleSDKRepositoryAndroid/releases)
+
 [key申请地址](http://sdk.aicare.net.cn)
+
 [English documentation](README.md)
+
 
 ## 目录
 - 概述
