@@ -408,154 +408,154 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
 - aicare.net.cn.iweightlibrary.entity.AlgorithmInfo (Algorithm Sequence Information)
 
 
-|Type | Parameter |Description
-|---|---|---
-|double |weight  | weight
-|int |  algorithmId  |algorithm ID
-|int  | adc         | impedance value
-|DecimalInfo| decimalInfo|number of decimal places
+| Type | Parameter |Description
+| ---|---|---
+| double |weight  | weight
+| int |  algorithmId  |algorithm ID
+| int  | adc         | impedance value
+| DecimalInfo| decimalInfo|number of decimal places
 
 
 - BM09Data (BM09 data)
 
-|Type | Parameter |Description
-|---|---|---
-|int |agreementType|agreement type
-|int| unitType|unit type
-|DecimalInfo| decimalInfo|Decimal places
-|double| weight|Weight
-|int| adc|impedance value
-|double| temp|temperature
-|int |algorithmId|algorithm ID
-|int |did|currently useless
-|String |bleVersion|Bluetooth version
-|int| bleType|Bluetooth type (0x09)
-|String |address|device address
-|long |timeMillis |measurement timestamp
-|whether |boolean |isStable is stable
+| Type | Parameter |Description
+| ---|---|---
+| int |agreementType|agreement type
+| int| unitType|unit type
+| DecimalInfo| decimalInfo|Decimal places
+| double| weight|Weight
+| int| adc|impedance value
+| double| temp|temperature
+| int |algorithmId|algorithm ID
+| int |did|currently useless
+| String |bleVersion|Bluetooth version
+| int| bleType|Bluetooth type (0x09)
+| String |address|device address
+| long |timeMillis |measurement timestamp
+| whether |boolean |isStable is stable
 
 
 - BM15Data (BM15 data)
 
-|Type | Parameter |Description
-|---|---|---
-|String |version|Bluetooth version
-|int| agreementType|agreementType
-|int| unitType|unitType
-|double |weight|weight
-|int| adc|impedance value
-|double| temp |temperature (if temp = 6553.5, the scale does not support temperature)
-|int |algorithmId |algorithm ID
-|int |did |currently useless
-|int| bleType|Bluetooth type (0x15)
-|String |address|device address
+| Type | Parameter |Description
+| ---|---|---
+| String |version|Bluetooth version
+| int| agreementType|agreementType
+| int| unitType|unitType
+| double |weight|weight
+| int| adc|impedance value
+| double| temp |temperature (if temp = 6553.5, the scale does not support temperature)
+| int |algorithmId |algorithm ID
+| int |did |currently useless
+| int| bleType|Bluetooth type (0x15)
+| String |address|device address
 
 
 - BodyFatData
 
-|Type | Parameter |Description
-|---|---|---
-|String |date|measurement date
-|String |time|time
-|double |weight|weight
-|double |bmi|
-|double |bfr|
-|double |sfr|
-|int |uvi|visceral fat index
-|double| rom|muscle rate
-|double| bmr |basal metabolic rate
-|double| bm |bone mass
-|double| vwc |moisture content
-|double| bodyAge |
-|double| pp |protein rate
-|int| number
-|int |sex
-|int |age |(1; male; 2, female)
-|int |height
-|int| adc|impedance value
+| Type | Parameter |Description
+| ---|---|---
+| String |date|measurement date
+| String |time|time
+| double |weight|weight
+| double |bmi|
+| double |bfr|
+| double |sfr|
+| int |uvi|visceral fat index
+| double| rom|muscle rate
+| double| bmr |basal metabolic rate
+| double| bm |bone mass
+| double| vwc |moisture content
+| double| bodyAge |
+| double| pp |protein rate
+| int| number
+| int |sex
+| int |age |(1; male; 2, female)
+| int |height
+| int| adc|impedance value
 
 
 - BroadData (broadcast data)
 
-|Type | Parameter |Description
-|---|---|---
-|String| name|device name
-|String |address|device address
-|boolean |isBright|Whether the screen is bright
-|int| rssi|signal value
-|byte |[] specificData|broadcast data
-|int |deviceType|device type
+| Type | Parameter |Description
+| ---|---|---
+| String| name|device name
+| String |address|device address
+| boolean |isBright|Whether the screen is bright
+| int| rssi|signal value
+| byte |[] specificData|broadcast data
+| int |deviceType|device type
 
 
 - DecimalInfo (decimal point information)
 
-|Type | Parameter |Description
-|---|---|---
-|int |sourceDecimal|source data decimal places
-|int |kgDecimal|kg number of decimal places
-|int |lbDecimal|lb decimal places
-|int |stDecimal|st number of decimal places
-|int |kg|Graduation kg
-|int| lb|Graduation lb
+| Type | Parameter |Description
+| ---|---|---
+| int |sourceDecimal|source data decimal places
+| int |kgDecimal|kg number of decimal places
+| int |lbDecimal|lb decimal places
+| int |stDecimal|st number of decimal places
+| int |kg|Graduation kg
+| int| lb|Graduation lb
 
 
 - User (User Information)
 
-|Type | Parameter |Description
-|---|---|---
-|int| id|
-|int |sex|
-|int |age |(1; male; 2, female)
-|int |height|
-|int |weight|
-|int |adc|impedance (deprecated)
+| Type | Parameter |Description
+| ---|---|---
+| int| id|
+| int |sex|
+| int |age |(1; male; 2, female)
+| int |height|
+| int |weight|
+| int |adc|impedance (deprecated)
 
 
 
 - WeightData (weight data)
 
-|Type | Parameter |Description
-|---|---|---
-|int |cmdType|command type (1, change; 2, stable; 3, in impedance measurement)
-|double| weight|
-|double| temp |temperature (if the temperature is Double.MAX_VALUE, the scale does not support temperature)
-|DecimalInfo| decimalInfo
-|int |adc|impedance value
-|int |algorithmType|algorithm ID
-|int |unitType|
-|int| deviceType|device type
+| Type | Parameter |Description
+| ---|---|---
+| int |cmdType|command type (1, change; 2, stable; 3, in impedance measurement)
+| double| weight|
+| double| temp |temperature (if the temperature is Double.MAX_VALUE, the scale does not support temperature)
+| DecimalInfo| decimalInfo
+| int |adc|impedance value
+| int |algorithmType|algorithm ID
+| int |unitType|
+| int| deviceType|device type
 
 
 
 - cn.net.aicare.algorithmutil.BodyFatData(Calculated body fat data)
 
-|Type | Parameter |Description
-|---|---|---
-|double| bmi|	Body mass index
-|double| bfr|	 body fat rate
-|double| sfr|	 Subcutaneous fat rate
-|int |uvi|	Visceral fat index
-|double| rom|  Rate of muscle
-|int| bmr|  basal metabolic rate
-|double| bm|  Bone Mass
-|double |vwc| Water content
-|int| bodyAge|  physical bodyAge
-|double |pp|  protein percentage
+| Type | Parameter |Description
+| ---|---|---
+| double| bmi|	Body mass index
+| double| bfr|	 body fat rate
+| double| sfr|	 Subcutaneous fat rate
+| int |uvi|	Visceral fat index
+| double| rom|  Rate of muscle
+| int| bmr|  basal metabolic rate
+| double| bm|  Bone Mass
+| double |vwc| Water content
+| int| bodyAge|  physical bodyAge
+| double |pp|  protein percentage
 
 
 
 
 - MoreFatData
 
-|Type | Parameter |Description
-|---|---|---
-|double| standardWeight|	Standard weight
-|double| controlWeight|	Weight control
-|double| fat|	Fat mass
-|double| removeFatWeight|	Fat-free weight
-|double| muscleMass| Muscle mass
-|double| protein| Protein amount
-|MoreFatData.FatLevel fatLevel| Obesity grade
+| Type | Parameter |Description
+| ---|---|---
+| double| standardWeight|	Standard weight
+| double| controlWeight|	Weight control
+| double| fat|	Fat mass
+| double| removeFatWeight|	Fat-free weight
+| double| muscleMass| Muscle mass
+| double| protein| Protein amount
+| MoreFatData.FatLevel fatLevel| Obesity grade
 ```
 public static enum FatLevel {
         UNDER, // Underweight

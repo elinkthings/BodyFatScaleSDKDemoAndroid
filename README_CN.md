@@ -4,7 +4,9 @@
 [![](https://jitpack.io/v/elinkthings/BodyFatScaleSDKRepositoryAndroid.svg)](https://jitpack.io/#elinkthings/BodyFatScaleSDKRepositoryAndroid)
 
 [aar包下载地址](https://github.com/elinkthings/BodyFatScaleSDKRepositoryAndroid/releases)
+
 [key申请地址](http://sdk.aicare.net.cn)
+
 [English documentation](README.md)
 
 ## 目录
@@ -406,153 +408,153 @@ double bfr, double rom, double pp)
 
  - aicare.net.cn.iweightlibrary.entity.AlgorithmInfo(算法序列信息)
 
-|类型|	参数名|	说明
-|---|---|---
-|double	| weight			|体重
-|int	| algorithmId	|算法ID
-|int	| adc			|阻抗值
-|DecimalInfo |	decimalInfo	|小数点位数
+| 类型|	参数名|	说明
+| ---|---|---
+| double	| weight			|体重
+| int	| algorithmId	|算法ID
+| int	| adc			|阻抗值
+| DecimalInfo |	decimalInfo	|小数点位数
 
 
 
 - BM09Data(BM09数据)
 
-|类型|	参数名|	说明
-|---|---|---
-|int	| agreementType	|协议类型
-|int	| unitType		|单位类型
-|DecimalInfo |	decimalInfp|	小数点位数
-|double	 | weight	|体重
-|int	 | adc	|阻抗值
-|double	 | temp	|温度
-|int	 | algorithmId|	算法ID
-|int	 | did	|（目前无用）
-|String	 | bleVersion	|蓝牙版本
-|int	 | bleType	|蓝牙类型（0x09）
-|String	 | address	|设备地址
-|long	 | timeMillis	|测量时间戳
-|boolean | 	isStable	|是否稳定
+| 类型|	参数名|	说明
+| ---|---|---
+| int	| agreementType	|协议类型
+| int	| unitType		|单位类型
+| DecimalInfo |	decimalInfp|	小数点位数
+| double	 | weight	|体重
+| int	 | adc	|阻抗值
+| double	 | temp	|温度
+| int	 | algorithmId|	算法ID
+| int	 | did	|（目前无用）
+| String	 | bleVersion	|蓝牙版本
+| int	 | bleType	|蓝牙类型（0x09）
+| String	 | address	|设备地址
+| long	 | timeMillis	|测量时间戳
+| boolean | 	isStable	|是否稳定
 
 
 - BM15Data(BM15数据)
 
-|类型|	参数名|	说明
-|---|---|---
-|String	| version		|蓝牙版本
-|int	| agreementType	|协议类型
-|int	| unitType		|单位类型
-|double	| weight			|体重
-|int	| adc			|阻抗值
-|double	| temp			|温度（若temp=6553.5，则表示秤不支持温度）
-|int	| algorithmId	|算法ID
-|int	| did			|（目前无用）
-|int	| bleType		|蓝牙类型（0x15）
-|String	| address		|设备地址
+| 类型|	参数名|	说明
+| ---|---|---
+| String	| version		|蓝牙版本
+| int	| agreementType	|协议类型
+| int	| unitType		|单位类型
+| double	| weight			|体重
+| int	| adc			|阻抗值
+| double	| temp			|温度（若temp=6553.5，则表示秤不支持温度）
+| int	| algorithmId	|算法ID
+| int	| did			|（目前无用）
+| int	| bleType		|蓝牙类型（0x15）
+| String	| address		|设备地址
 
 
 - BodyFatData(体脂数据)
 
-|类型|	参数名|	说明
-|---|---|---
-|String	|date	|测量日期
-|String	|time	|测量时间
-|double	|weight	|体重
-|double	|bmi	|身体质量指数
-|double	|bfr	|体脂率
-|double	|sfr	|皮下脂肪率
-|int	|uvi	|内脏脂肪指数
-|double	|rom	|肌肉率
-|double	|bmr	|基础代谢率
-|double	|bm		|骨量
-|double	|vwc	|水分率
-|double	|bodyAge|	身体年龄
-|double	|pp		|蛋白率
-|int	|number	|编号
-|int	|sex	|性别
-|int	|age	|年龄（1、男；2、女）
-|int	|height	|身高
-|int	|adc	|阻抗值
+| 类型|	参数名|	说明
+| ---|---|---
+| String	|date	|测量日期
+| String	|time	|测量时间
+| double	|weight	|体重
+| double	|bmi	|身体质量指数
+| double	|bfr	|体脂率
+| double	|sfr	|皮下脂肪率
+| int	|uvi	|内脏脂肪指数
+| double	|rom	|肌肉率
+| double	|bmr	|基础代谢率
+| double	|bm		|骨量
+| double	|vwc	|水分率
+| double	|bodyAge|	身体年龄
+| double	|pp		|蛋白率
+| int	|number	|编号
+| int	|sex	|性别
+| int	|age	|年龄（1、男；2、女）
+| int	|height	|身高
+| int	|adc	|阻抗值
 
 
 
 - BroadData(广播数据)
 
-|类型|	参数名|	说明
-|---|---|---
-|String		|name			|设备名
-|String		|address		|设备地址
-|boolean	|isBright		|是否亮屏
-|int		|rssi			|信号值
-|byte[]		|specificData	|广播数据
-|int		|deviceType		|设备类型
+| 类型|	参数名|	说明
+| ---|---|---
+| String		|name			|设备名
+| String		|address		|设备地址
+| boolean	|isBright		|是否亮屏
+| int		|rssi			|信号值
+| byte[]		|specificData	|广播数据
+| int		|deviceType		|设备类型
 
 
 - DecimalInfo(小数点位数信息)
 
-|类型|	参数名|	说明
-|---|---|---
-|int|	sourceDecimal	|源数据小数点位数
-|int|	kgDecimal		|kg小数点位数
-|int|	lbDecimal		|lb小数点位数
-|int|	stDecimal		|st小数点位数
-|int|	kgGraduation	|kg分度
-|int|	lbGraduation	|lb分度
+| 类型|	参数名|	说明
+| ---|---|---
+| int|	sourceDecimal	|源数据小数点位数
+| int|	kgDecimal		|kg小数点位数
+| int|	lbDecimal		|lb小数点位数
+| int|	stDecimal		|st小数点位数
+| int|	kgGraduation	|kg分度
+| int|	lbGraduation	|lb分度
 
 
 - User(用户信息)
 
-|类型|	参数名|	说明
-|---|---|---
-|int|id		|编号
-|int|sex	|性别
-|int|age	|年龄（1、男；2、女）
-|int|height	|身高
-|int|weight	|体重
-|int|adc	|阻抗值（弃用）
+| 类型|	参数名|	说明
+| ---|---|---
+| int|id		|编号
+| int|sex	|性别
+| int|age	|年龄（1、男；2、女）
+| int|height	|身高
+| int|weight	|体重
+| int|adc	|阻抗值（弃用）
 
 
 - WeightData(体重数据)
 
-|类型|	参数名|	说明
-|---|---|---
-|int|	cmdType|	命令类型（1、变化；2、稳定；3、阻抗测量中）
-|double|	weight|	体重
-|double|	temp	|温度（若温度为Double.MAX_VALUE则表示秤不支持温度）
-|DecimalInfo|	decimalInfo|	小数点位数信息
-|int|	adc	|阻抗值
-|int|	algorithmType|	算法ID
-|int|	unitType	|单位类型
-|int|	deviceType	|设备类型
+| 类型|	参数名|	说明
+| ---|---|---
+| int|	cmdType|	命令类型（1、变化；2、稳定；3、阻抗测量中）
+| double|	weight|	体重
+| double|	temp	|温度（若温度为Double.MAX_VALUE则表示秤不支持温度）
+| DecimalInfo|	decimalInfo|	小数点位数信息
+| int|	adc	|阻抗值
+| int|	algorithmType|	算法ID
+| int|	unitType	|单位类型
+| int|	deviceType	|设备类型
 
 
 - cn.net.aicare.algorithmutil.BodyFatData(计算得到的体脂数据)
 
-|类型|	参数名|	说明
-|---|---|---
-|double| bmi|身体质量指数
-|double| bfr|体脂率 body fat rate
-|double| sfr|皮下脂肪率 Subcutaneous fat rate
-|int| uvi|	内脏脂肪指数
-|double |rom| 肌肉率 Rate of muscle
-|int |bmr| 基础代谢率 basal metabolic rate
-|double |bm| 骨骼质量 Bone Mass
-|double| vwc| 水含量
-|int| bodyAge| 身体年龄 physical bodyAge
-|double |pp| 蛋白率 protein percentage
+| 类型|	参数名|	说明
+| ---|---|---
+| double| bmi|身体质量指数
+| double| bfr|体脂率 body fat rate
+| double| sfr|皮下脂肪率 Subcutaneous fat rate
+| int| uvi|	内脏脂肪指数
+| double |rom| 肌肉率 Rate of muscle
+| int |bmr| 基础代谢率 basal metabolic rate
+| double |bm| 骨骼质量 Bone Mass
+| double| vwc| 水含量
+| int| bodyAge| 身体年龄 physical bodyAge
+| double |pp| 蛋白率 protein percentage
 
 
 
 - MoreFatData
 
-|类型|	参数名|	说明
-|---|---|---
-|double| standardWeight|	标准体重
-|double| controlWeight|	体重控制量
-|double| fat|	脂肪量
-|double| removeFatWeight|	去脂体重
-|double| muscleMass| 肌肉量
-|double| protein| 蛋白量
-|MoreFatData.FatLevel| fatLevel| 肥胖等级
+| 类型|	参数名|	说明
+| ---|---|---
+| double| standardWeight|	标准体重
+| double| controlWeight|	体重控制量
+| double| fat|	脂肪量
+| double| removeFatWeight|	去脂体重
+| double| muscleMass| 肌肉量
+| double| protein| 蛋白量
+| MoreFatData.FatLevel| fatLevel| 肥胖等级
 
 ```
 public static enum FatLevel {
