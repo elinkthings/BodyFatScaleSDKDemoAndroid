@@ -594,6 +594,7 @@ public static final int STATE_TIME_OUT = 5; // connection timed out
 ```
 
 ## Version History
+
 | Version number | Update time | Author | Update information
 | ---- | --- | ----- | -----
 | 1.0   | 2017/02/15 | Suzy | Preliminary version
@@ -619,6 +620,7 @@ public static final int STATE_TIME_OUT = 5; // connection timed out
 | 1.2.2 | 2020/3/23 | Xing | Modify SDK to gradle form dependency
 | 1.2.3 | 2020/4/2 | Xing | Add key verification, modify the dependent environment to androidx
 | 1.2.4 | 2020/4/10 | Xing | Fix known bugs
+
 
 ## FAQ
 
