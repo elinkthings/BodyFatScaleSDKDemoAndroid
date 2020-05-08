@@ -1,4 +1,6 @@
-# Body fat scale SDK Instructions - Android 
+[TOC]
+
+# Body fat scale SDK Instructions - Android
 
 [![](https://jitpack.io/v/elinkthings/BodyFatScaleSDKRepositoryAndroid.svg)](https://jitpack.io/#elinkthings/BodyFatScaleSDKRepositoryAndroid)
 
@@ -6,23 +8,7 @@
 
 [key registered address](http://sdk.aicare.net.cn)
 
-[中文文档](README_CN.md)
 
-## Contents
-- Overview
-- Conditions of Use
-- Import SDK
-- permission settings
-- Start access
-- scan the device, stop scanning the device, check the scan status
-- connect the device, disconnect the device
-- Successful connection, accept the data returned by the scale
-- Call the algorithm to calculate the data in the SDK
-- Give instructions to the device
-- Class description
-- Version History
-- FAQ
-- Contact Us
 
 ## Overview
 - What is elink body fat scale SDK?
