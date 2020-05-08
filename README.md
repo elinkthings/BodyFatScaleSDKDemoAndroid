@@ -81,12 +81,14 @@ You can also use aar package dependency,Please download it into the project's li
 
 ##   Start access
 > First configure the key and secret for the SDK, [application address](http://sdk.aicare.net.cn)
+
 ```
   // Called in the application of the main project
   AiFitSDK.getInstance (). Init (this, key, secret);
 ```
 
 > Add below AndroidManifest.xml application tag
+
 ```
 <application>
     ...
@@ -140,6 +142,7 @@ The APIs related to scanning are as follows. For details, please refer to the Bl
 // Call the isScanning method to see if it is scanning true: scanning; false: scanning stopped
  isScanning ();
 ```
+
 > Note: If it is a broadcast scale, you do not need to perform the connection operation. You can directly get the body fat data in the scan callback getAicareDevice (BroadData broadData) method. The broadcast scale calls stopScan () to get back no data.
 
 ```
@@ -248,8 +251,10 @@ Double.valueOf(ParseData.getKgWeight(bodyFatData.getWeight(),
 bodyFatData.getDecimalInfo())), bodyFatData .getHeight(),
 bodyFatData.getAdc());
 ```
+
 - If you need to get 6 additional body indicators such as body fat removal and weight control, please call AicareBleConfig.getMoreFatData to get MoreFatData object
 Instructions:
+
 ```
 AicareBleConfig.getMoreFatData (int sex, int height, double weight,
 double bfr, double rom, double pp)
@@ -263,13 +268,13 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
     @Override
     protected void onServiceBinded (WBYService.WBYBinder binder) {
         this.binder = binder;
-      
+
    }
    // If the history is obtained
       binder.syncHistory ();
-      
-      
-      
+
+
+
    // Part of the method of WBYBinder
    public class WBYBinder extends LocalBinder {
 
@@ -383,10 +388,10 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
         public void getDecimalInfo () {
             mManager.getDecimalInfo ();
         }
-        
+
         ...
 }
-    
+
 ```
 
 ##   Class description
@@ -542,6 +547,7 @@ Get an instance of WBYService.WBYBinder in BleProfileServiceReadyActivity.onServ
 | double| muscleMass| Muscle mass
 | double| protein| Protein amount
 | MoreFatData.FatLevel fatLevel| Obesity grade
+
 ```
 public static enum FatLevel {
         UNDER, // Underweight
@@ -551,6 +557,7 @@ public static enum FatLevel {
         FAT;  overweight
 }
 ```
+
 - BleProfileService Connection Status
 
 ```
@@ -561,6 +568,7 @@ public static final int STATE_SERVICES_DISCOVERED = 2; // Discover services
 public static final int STATE_INDICATION_SUCCESS = 3; // Enable success
 public static final int STATE_TIME_OUT = 5; // connection timed out
 ```
+
 - AicareBleConfig.SettingStatus Status information returned by the device
 
 ```
@@ -592,6 +600,7 @@ int SET_DID_FAILED = 24; // Set DID failed
 int DATA_SEND_END = 25; // Measured data transmission is complete
 int UNKNOWN = -1; // unknown
 ```
+
 - WBYService Bluetooth information returned by the device
 
 ```
@@ -661,6 +670,7 @@ deviceType == AicareBleConfig.TYPE_WEI_TEMP is a connected scale with temperatur
 - The data displayed by the scale is inconsistent with the data received by the app
 1. The SDK will request decimals by default, and you can use getDecimalInfo () in WBYBinder to actively obtain decimals
 2. When the app calculates the weight, it needs to pass in DecimalInfo (decimal object) for calculation
+
 ```
 DecimalInfo {
     private int sourceDecimal; // The source data decimal places
@@ -671,6 +681,7 @@ DecimalInfo {
     private int lbGraduation; // lb division
 }
 ```
+
 - Why can I only measure my weight and no other body fat data?
 1. You must take off your shoes and socks and stand barefoot on the electrode pads of the body fat scale to measure body fat data.
 

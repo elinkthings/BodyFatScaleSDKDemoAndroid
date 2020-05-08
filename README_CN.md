@@ -80,12 +80,14 @@ repositories {
 ## 开始接入
 
 > 首先给SDK配置key和secret，[申请地址](http://sdk.aicare.net.cn)
+
 ```
  //在主项目的application中调用
  AiFitSDK.getInstance().init(this, key, secret);
 ```
 
 > 在AndroidManifest.xml application标签下面增加
+
 ```
 <application>
     ...
@@ -240,16 +242,18 @@ startConnect(String address)
 ## 调用SDK中的算法库
 - 如果设备返回阻抗,没有体脂数据可以通过继承BleProfileServiceReadyActivity中的onGetFatData方法获得 BodyFatData 对象,调用AicareBleConfig.getBodyFatData方法计算得到cn.net.aicare.algorithmutil.BodyFatData对象
 使用方法:
-```
 
+```
 AicareBleConfig.getBodyFatData(AlgorithmUtil.AlgorithmType.TYPE_AIC
 ARE, bodyFatData.getSex(), bodyFatData.getAge(),
 Double.valueOf(ParseData.getKgWeight(bodyFatData.getWeight(),
 bodyFatData.getDecimalInfo())), bodyFatData .getHeight(),
 bodyFatData.getAdc());
 ```
+
 - 如需要获取去脂体重，体重控制量等额外的 6 项身体指标，请调用调用AicareBleConfig.getMoreFatData计算得到 MoreFatData 对象
 使用方法:
+
 ```
 AicareBleConfig.getMoreFatData(int sex, int height, double weight,
 double bfr, double rom, double pp)
@@ -603,12 +607,13 @@ public final static int USER_ID = 3; //用户编号
 public final static int ADC = 4; //阻抗值
 ```
 ## 版本历史
+
 |版本号|更新时间|作者|更新信息|
 |:----|:---|:-----|-----|
-|1.0|	2017/2/15|	Suzy|	初步版本|
-|1.0.1|	2017/7/31|	Suzy|	修复部分数据转换bug
-|1.0.2|	2017/9/11|	Suzy|	指令中的类型根据实际连上的设备类型设置
-|1.0.3|	2017/11/16|	Suzy|	代码优化
+|1.0|2017/2/15|Suzy|初步版本
+|1.0.1|2017/7/31|Suzy|修复部分数据转换bug
+|1.0.2|	2017/9/11|	Suzy|指令中的类型根据实际连上的设备类型设置
+|1.0.3|	2017/11/16|	Suzy|代码优化
 |1.0.4|	2018/7/12|	Suzy|	兼容广播秤
 |1.0.5|	2018/1/15|	Suzy|	兼容新协议
 |1.0.6|	2018/2/25|	Suzy|	功能优化
