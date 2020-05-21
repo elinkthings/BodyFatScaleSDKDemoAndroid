@@ -91,7 +91,7 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AiFitSDK.getInstance().init(this,"eadecf060bd49872","00005acc8e56e34dfc2995062c");
+        AiFitSDK.getInstance().init(this, "eadecf060bd49872", "00005acc8e56e34dfc2995062c");
         setContentView(R.layout.activity_my);
         initData();
         initViews();
@@ -798,10 +798,13 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
             if (bodyFatData.getAdc() != 0) {
                 seek_bar_adc.setProgress(bodyFatData.getAdc());
             }
-            if (isDeviceConnected() && bodyFatData.getAdc() != 0) {
-                /*userList.clear();
-                userList.add(user);*/
-                handler.postDelayed(updateRunnable, 50);
+            boolean deviceConnected = isDeviceConnected();
+            if (deviceConnected) {
+                if (binder != null&&bodyFatData.getAdc() != 0){
+                    binder.updateUser(user);
+                }
+            }else {
+                L.i(TAG,"SDK判断到连接断开");
             }
         }
 
