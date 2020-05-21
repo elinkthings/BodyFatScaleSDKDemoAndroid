@@ -655,6 +655,8 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
                                 .getHeight());
                 showInfo(bm15BodyFatData.toString(), true);
             }
+        }else if (weightData.getCmdType() == 2&&binder!=null&&user!=null){
+            binder.syncUser(user);
         }
     }
 
