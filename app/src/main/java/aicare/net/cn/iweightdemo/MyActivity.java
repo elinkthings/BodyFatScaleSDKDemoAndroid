@@ -850,6 +850,32 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
                 .valueOf(algorithmInfo.getAdc())) + (getString(R.string.algorithm_id, algorithmInfo
                 .getAlgorithmId())));
         showInfo(algorithmStr, true);
+        if (user != null) {
+            cn.net.aicare.algorithmutil.BodyFatData bodyFatData = AicareBleConfig
+                    .getBodyFatData(algorithmInfo.getAlgorithmId(), user.getSex(), user.getAge(), Double.valueOf(ParseData.getKgWeight(user.getWeight(), algorithmInfo.getDecimalInfo())), user
+                            .getHeight(), algorithmInfo.getAdc());
+            BodyFatData bodyFatData1=new BodyFatData();
+            bodyFatData1.setAge( user.getAge());
+            bodyFatData1.setWeight( user.getWeight());
+            bodyFatData1.setSex(user.getSex());
+            bodyFatData1.setHeight(user.getHeight());
+            bodyFatData1.setAdc(algorithmInfo.getAdc());
+            bodyFatData1.setBfr( bodyFatData.getBfr());
+            bodyFatData1.setBm(bodyFatData.getBm());
+            bodyFatData1.setBmi( bodyFatData.getBmi());
+            bodyFatData1.setBmr( bodyFatData.getBmr());
+            bodyFatData1.setBodyAge( bodyFatData.getBodyAge());
+            bodyFatData1.setPp( bodyFatData.getPp());
+            bodyFatData1.setRom( bodyFatData.getRom());
+            bodyFatData1.setVwc( bodyFatData.getVwc());
+            bodyFatData1.setSfr( bodyFatData.getSfr());
+            bodyFatData1.setUvi( bodyFatData.getUvi());
+            bodyFatData1.setDecimalInfo(algorithmInfo.getDecimalInfo());
+            bodyFatData1.setNumber(1);
+            bodyFatData1.setDate(ParseData.getDate());
+            bodyFatData1.setTime( ParseData.getTime());
+            onGetFatData(false,bodyFatData1);
+        }
     }
 
 
