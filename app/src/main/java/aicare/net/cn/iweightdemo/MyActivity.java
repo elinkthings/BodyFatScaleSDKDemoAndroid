@@ -642,6 +642,9 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
         showInfo(getString(R.string.state_error, errMsg, errCode), true);
     }
 
+    private long mOldBM15DataTime = 0;
+    private String mOldData = "";
+
     @Override
     public void onGetWeightData(final WeightData weightData) {
         if (weightData == null)
@@ -652,8 +655,19 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
         }
         if (weightData.getDeviceType() == AicareBleConfig.BM_15) {
             if (weightData.getCmdType() != 3) {
+                long time = System.currentTimeMillis();
                 isNewBM15TestData = true;
-                showInfo(weightData.toString(), false);
+                if (weightData.toString().equalsIgnoreCase(mOldData)) {
+                    if (time - mOldBM15DataTime > 1000) {
+                        mOldBM15DataTime = time;
+                        showInfo(weightData.toString(), false);
+                    }
+                } else {
+                    mOldBM15DataTime = time;
+                    showInfo(weightData.toString(), false);
+                }
+                mOldData = weightData.toString();
+
             }
             if (weightData.getCmdType() == 3 && weightData.getAdc() > 0 && isNewBM15TestData) {
                 isNewBM15TestData = false;
@@ -758,6 +772,7 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
         switch (index) {
             case WBYService.BLE_VERSION:
                 showInfo(getString(R.string.ble_version, result), true);
+                tv_version.setText(getString(R.string.ble_version, result));
                 break;
             case WBYService.USER_ID:
                 showInfo(getString(R.string.user_id, result), true);
