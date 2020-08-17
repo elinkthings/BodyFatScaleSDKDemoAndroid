@@ -228,4 +228,16 @@
         app:layout_constraintRight_toRightOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/tv_weight"/>
 
+    <TextView
+        android:id="@+id/tv_version"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/default_version"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_temp"/>
+
 </merge>

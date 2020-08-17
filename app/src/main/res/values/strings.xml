@@ -68,6 +68,7 @@
     <string name="clear_log">Clear Log</string>
     <string name="data_send_end">Measurement data sent</string>
     <string name="default_DID">DID: &#8212;</string>
+    <string name="default_version">Version: &#8212;</string>
     <string name="did">DID: %1$d</string>
     <string name="history_data">Historical data:%1$s</string>
     <string name="history_send_over">Completed sending of historical data</string>

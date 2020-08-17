@@ -64,7 +64,7 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
     private Button btn_sync_history, btn_sync_list, btn_sync_user, btn_sync_time, btn_version;
     private RadioGroup rg_change_unit;
 
-    private TextView tv_age, tv_height, tv_weight, tv_temp, text_view_weight, tv_adc, tv_did;
+    private TextView tv_age, tv_height, tv_weight, tv_temp, text_view_weight, tv_adc, tv_did, tv_version;
     private SeekBar seek_bar_age, seek_bar_height, seek_bar_weight, seek_bar_adc;
 
     private RadioGroup rg_sex;
@@ -87,6 +87,7 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
     private BroadData cacheBroadData;
 
     private boolean isNewBM15TestData;
+    private boolean mGetVersion = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,6 +150,7 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
         tv_weight = findViewById(R.id.tv_weight);
         tv_temp = findViewById(R.id.tv_temp);
         tv_did = findViewById(R.id.tv_did);
+        tv_version = findViewById(R.id.tv_version);
 
         text_view_weight = findViewById(R.id.text_view_weight);
         setWeightText();
@@ -338,6 +340,7 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
         tv_weight.setText(R.string.default_weight);
         tv_temp.setText(R.string.default_temp);
         tv_did.setText(R.string.default_DID);
+        tv_version.setText(R.string.default_version);
     }
 
     @Override
@@ -370,6 +373,8 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
                     break;
 
             }
+        } else if (v.getId() == R.id.btn_version) {
+            mGetVersion = true;
         }
     }
 
@@ -425,22 +430,24 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
             if (devicesDialog.isShowing()) {
                 devicesDialog.setDevice(broadData);
             }
-            if (cacheBroadData != null && TextUtils
-                    .equals(cacheBroadData.getAddress(), broadData.getAddress())) {
+            if (cacheBroadData != null && TextUtils.equals(cacheBroadData.getAddress(), broadData.getAddress())) {
                 if (broadData.getDeviceType() == AicareBleConfig.BM_09) {
                     if (broadData.getSpecificData() != null) {
-                        BM09Data data = AicareBleConfig
-                                .getBm09Data(broadData.getAddress(), broadData.getSpecificData());
+                        BM09Data data = AicareBleConfig.getBm09Data(broadData.getAddress(), broadData.getSpecificData());
                         if (isNewData(data) && data.getWeight() != 0) {
                             showInfo(data.toString(), false);
                             tv_did.setText("DID:" + data.getDid());
                         }
+                        if (mGetVersion) {
+                            mGetVersion = false;
+                            tv_version.setText(getString(R.string.ble_version, data.getBleVersion()));
+                        }
+
                     }
                 } else if (broadData.getDeviceType() == AicareBleConfig.BM_15) {
                     if (broadData.getSpecificData() != null) {
                         rg_change_unit.setOnCheckedChangeListener(null);
-                        BM15Data data = AicareBleConfig
-                                .getBm15Data(broadData.getAddress(), broadData.getSpecificData());
+                        BM15Data data = AicareBleConfig.getBm15Data(broadData.getAddress(), broadData.getSpecificData());
                         WeightData weightData = new WeightData();
                         weightData.setAdc(data.getAdc());
                         weightData.setCmdType(data.getAgreementType());
@@ -484,11 +491,14 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
                         if (isNewData(data) && data.getWeight() != 0) {
                             tv_did.setText("DID:" + data.getDid());
                         }
+                        if (mGetVersion) {
+                            mGetVersion = false;
+                            tv_version.setText(getString(R.string.ble_version, data.getVersion()));
+                        }
                     }
                 } else {
                     if (broadData.getSpecificData() != null) {
-                        WeightData weightData = AicareBleConfig
-                                .getWeightData(broadData.getSpecificData());
+                        WeightData weightData = AicareBleConfig.getWeightData(broadData.getSpecificData());
                         onGetWeightData(weightData);
                     }
                 }
@@ -559,9 +569,7 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
 
     @Override
     public void connect(BroadData device) {
-        if (device.getDeviceType() == AicareBleConfig.TYPE_WEI_BROAD || device
-                .getDeviceType() == AicareBleConfig.TYPE_WEI_TEMP_BROAD || device
-                .getDeviceType() == AicareBleConfig.BM_09 || device
+        if (device.getDeviceType() == AicareBleConfig.TYPE_WEI_BROAD || device.getDeviceType() == AicareBleConfig.TYPE_WEI_TEMP_BROAD || device.getDeviceType() == AicareBleConfig.BM_09 || device
                 .getDeviceType() == AicareBleConfig.BM_15) {
             cacheBroadData = device;
             showInfo(getString(R.string.state_bound, device.getAddress()), true);
@@ -638,8 +646,7 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
     public void onGetWeightData(final WeightData weightData) {
         if (weightData == null)
             return;
-        setWeighDataText(AicareBleConfig
-                .getWeight(weightData.getWeight(), unit, weightData.getDecimalInfo()));
+        setWeighDataText(AicareBleConfig.getWeight(weightData.getWeight(), unit, weightData.getDecimalInfo()));
         if (weightData.getTemp() != Double.MAX_VALUE) {
             tv_temp.setText(getString(R.string.temp, String.valueOf(weightData.getTemp())));
         }
@@ -650,12 +657,10 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
             }
             if (weightData.getCmdType() == 3 && weightData.getAdc() > 0 && isNewBM15TestData) {
                 isNewBM15TestData = false;
-                BodyFatData bm15BodyFatData = AicareBleConfig
-                        .getBM15BodyFatData(weightData, user.getSex(), user.getAge(), user
-                                .getHeight());
+                BodyFatData bm15BodyFatData = AicareBleConfig.getBM15BodyFatData(weightData, user.getSex(), user.getAge(), user.getHeight());
                 showInfo(bm15BodyFatData.toString(), true);
             }
-        }else if (weightData.getCmdType() == 2&&binder!=null&&user!=null){
+        } else if (weightData.getCmdType() == 2 && binder != null && user != null) {
             binder.syncUser(user);
         }
     }
@@ -675,8 +680,7 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
                 showInfo(getString(R.string.settings_status, getString(R.string.low_power)), true);
                 break;
             case AicareBleConfig.SettingStatus.LOW_VOLTAGE:
-                showInfo(getString(R.string.settings_status, getString(R.string.low_voltage)),
-                        true);
+                showInfo(getString(R.string.settings_status, getString(R.string.low_voltage)), true);
                 break;
             case AicareBleConfig.SettingStatus.ERROR:
                 showInfo(getString(R.string.settings_status, getString(R.string.error)), true);
@@ -688,63 +692,49 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
                 showInfo(getString(R.string.settings_status, getString(R.string.unstable)), true);
                 break;
             case AicareBleConfig.SettingStatus.SET_UNIT_SUCCESS:
-                showInfo(getString(R.string.settings_status,
-                        getString(R.string.set_unit_success)), true);
+                showInfo(getString(R.string.settings_status, getString(R.string.set_unit_success)), true);
                 break;
             case AicareBleConfig.SettingStatus.SET_UNIT_FAILED:
-                showInfo(getString(R.string.settings_status, getString(R.string.set_unit_failed))
-                        , true);
+                showInfo(getString(R.string.settings_status, getString(R.string.set_unit_failed)), true);
                 break;
             case AicareBleConfig.SettingStatus.SET_TIME_SUCCESS:
-                showInfo(getString(R.string.settings_status,
-                        getString(R.string.set_time_success)), true);
+                showInfo(getString(R.string.settings_status, getString(R.string.set_time_success)), true);
                 break;
             case AicareBleConfig.SettingStatus.SET_TIME_FAILED:
-                showInfo(getString(R.string.settings_status, getString(R.string.set_time_failed))
-                        , true);
+                showInfo(getString(R.string.settings_status, getString(R.string.set_time_failed)), true);
                 break;
             case AicareBleConfig.SettingStatus.SET_USER_SUCCESS:
-                showInfo(getString(R.string.settings_status,
-                        getString(R.string.set_user_success)), true);
+                showInfo(getString(R.string.settings_status, getString(R.string.set_user_success)), true);
                 break;
             case AicareBleConfig.SettingStatus.SET_USER_FAILED:
-                showInfo(getString(R.string.settings_status, getString(R.string.set_user_failed))
-                        , true);
+                showInfo(getString(R.string.settings_status, getString(R.string.set_user_failed)), true);
                 break;
             case AicareBleConfig.SettingStatus.UPDATE_USER_LIST_SUCCESS:
-                showInfo(getString(R.string.settings_status,
-                        getString(R.string.update_user_list_success)), true);
+                showInfo(getString(R.string.settings_status, getString(R.string.update_user_list_success)), true);
                 break;
             case AicareBleConfig.SettingStatus.UPDATE_USER_LIST_FAILED:
-                showInfo(getString(R.string.settings_status,
-                        getString(R.string.update_user_list_failed)), true);
+                showInfo(getString(R.string.settings_status, getString(R.string.update_user_list_failed)), true);
                 break;
             case AicareBleConfig.SettingStatus.UPDATE_USER_SUCCESS:
-                showInfo(getString(R.string.settings_status,
-                        getString(R.string.update_user_success)), true);
+                showInfo(getString(R.string.settings_status, getString(R.string.update_user_success)), true);
                 break;
             case AicareBleConfig.SettingStatus.UPDATE_USER_FAILED:
-                showInfo(getString(R.string.settings_status,
-                        getString(R.string.update_user_failed)), true);
+                showInfo(getString(R.string.settings_status, getString(R.string.update_user_failed)), true);
                 break;
             case AicareBleConfig.SettingStatus.NO_HISTORY:
                 showInfo(getString(R.string.settings_status, getString(R.string.no_history)), true);
                 break;
             case AicareBleConfig.SettingStatus.HISTORY_START_SEND:
-                showInfo(getString(R.string.settings_status,
-                        getString(R.string.history_start_send)), true);
+                showInfo(getString(R.string.settings_status, getString(R.string.history_start_send)), true);
                 break;
             case AicareBleConfig.SettingStatus.HISTORY_SEND_OVER:
-                showInfo(getString(R.string.settings_status,
-                        getString(R.string.history_send_over)), true);
+                showInfo(getString(R.string.settings_status, getString(R.string.history_send_over)), true);
                 break;
             case AicareBleConfig.SettingStatus.NO_MATCH_USER:
-                showInfo(getString(R.string.settings_status, getString(R.string.no_match_user)),
-                        true);
+                showInfo(getString(R.string.settings_status, getString(R.string.no_match_user)), true);
                 break;
             case AicareBleConfig.SettingStatus.ADC_MEASURED_ING:
-                showInfo(getString(R.string.settings_status,
-                        getString(R.string.adc_measured_ind)), true);
+                showInfo(getString(R.string.settings_status, getString(R.string.adc_measured_ind)), true);
                 break;
             case AicareBleConfig.SettingStatus.ADC_ERROR:
                 showInfo(getString(R.string.settings_status, getString(R.string.adc_error)), true);
@@ -753,13 +743,11 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
                 showInfo(getString(R.string.settings_status, getString(R.string.unknown)), true);
                 break;
             case AicareBleConfig.SettingStatus.REQUEST_DISCONNECT:
-                showInfo(getString(R.string.settings_status,
-                        getString(R.string.request_disconnect)), true);
+                showInfo(getString(R.string.settings_status, getString(R.string.request_disconnect)), true);
                 break;
 
             case AicareBleConfig.SettingStatus.DATA_SEND_END:
-                showInfo(getString(R.string.settings_status, getString(R.string.data_send_end)),
-                        true);
+                showInfo(getString(R.string.settings_status, getString(R.string.data_send_end)), true);
                 break;
         }
     }
@@ -794,19 +782,17 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
             showInfo(getString(R.string.history_data, bodyFatData.toString()), true);
         } else {
             showInfo(getString(R.string.body_fat_data, bodyFatData.toString()), true);
-            seek_bar_weight.setProgress((int) (Double.valueOf(AicareBleConfig
-                    .getWeight(bodyFatData.getWeight(), AicareBleConfig.UNIT_KG, bodyFatData
-                            .getDecimalInfo())) * 10));
+            seek_bar_weight.setProgress((int) (Double.valueOf(AicareBleConfig.getWeight(bodyFatData.getWeight(), AicareBleConfig.UNIT_KG, bodyFatData.getDecimalInfo())) * 10));
             if (bodyFatData.getAdc() != 0) {
                 seek_bar_adc.setProgress(bodyFatData.getAdc());
             }
             boolean deviceConnected = isDeviceConnected();
             if (deviceConnected) {
-                if (binder != null&&bodyFatData.getAdc() != 0){
+                if (binder != null && bodyFatData.getAdc() != 0) {
                     binder.updateUser(user);
                 }
-            }else {
-                L.i(TAG,"SDK判断到连接断开");
+            } else {
+                L.i(TAG, "SDK判断到连接断开");
             }
         }
 
@@ -832,13 +818,9 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
         if (decimalInfo == null)
             return;
         L.e(TAG, decimalInfo.toString());
-        String decimalStr = (getString(R.string.source_decimal, decimalInfo
-                .getSourceDecimal())) + (getString(R.string.kg_decimal, decimalInfo
-                .getKgDecimal())) + (getString(R.string.lb_decimal, decimalInfo
-                .getLbDecimal())) + (getString(R.string.st_decimal, decimalInfo
-                .getStDecimal())) + (getString(R.string.kg_graduation, decimalInfo
-                .getKgGraduation())) + (getString(R.string.lb_graduation, decimalInfo
-                .getLbGraduation()));
+        String decimalStr = (getString(R.string.source_decimal, decimalInfo.getSourceDecimal())) + (getString(R.string.kg_decimal, decimalInfo
+                .getKgDecimal())) + (getString(R.string.lb_decimal, decimalInfo.getLbDecimal())) + (getString(R.string.st_decimal, decimalInfo
+                .getStDecimal())) + (getString(R.string.kg_graduation, decimalInfo.getKgGraduation())) + (getString(R.string.lb_graduation, decimalInfo.getLbGraduation()));
         showInfo(decimalStr, true);
     }
 
@@ -846,35 +828,33 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
     protected void onGetAlgorithmInfo(AlgorithmInfo algorithmInfo) {
         if (algorithmInfo == null)
             return;
-        String algorithmStr = (getString(R.string.adc, String
-                .valueOf(algorithmInfo.getAdc())) + (getString(R.string.algorithm_id, algorithmInfo
-                .getAlgorithmId())));
+        String algorithmStr = (getString(R.string.adc, String.valueOf(algorithmInfo.getAdc())) + (getString(R.string.algorithm_id, algorithmInfo.getAlgorithmId())));
         showInfo(algorithmStr, true);
         if (user != null) {
             cn.net.aicare.algorithmutil.BodyFatData bodyFatData = AicareBleConfig
                     .getBodyFatData(algorithmInfo.getAlgorithmId(), user.getSex(), user.getAge(), Double.valueOf(ParseData.getKgWeight(user.getWeight(), algorithmInfo.getDecimalInfo())), user
                             .getHeight(), algorithmInfo.getAdc());
-            BodyFatData bodyFatData1=new BodyFatData();
-            bodyFatData1.setAge( user.getAge());
-            bodyFatData1.setWeight( user.getWeight());
+            BodyFatData bodyFatData1 = new BodyFatData();
+            bodyFatData1.setAge(user.getAge());
+            bodyFatData1.setWeight(user.getWeight());
             bodyFatData1.setSex(user.getSex());
             bodyFatData1.setHeight(user.getHeight());
             bodyFatData1.setAdc(algorithmInfo.getAdc());
-            bodyFatData1.setBfr( bodyFatData.getBfr());
+            bodyFatData1.setBfr(bodyFatData.getBfr());
             bodyFatData1.setBm(bodyFatData.getBm());
-            bodyFatData1.setBmi( bodyFatData.getBmi());
-            bodyFatData1.setBmr( bodyFatData.getBmr());
-            bodyFatData1.setBodyAge( bodyFatData.getBodyAge());
-            bodyFatData1.setPp( bodyFatData.getPp());
-            bodyFatData1.setRom( bodyFatData.getRom());
-            bodyFatData1.setVwc( bodyFatData.getVwc());
-            bodyFatData1.setSfr( bodyFatData.getSfr());
-            bodyFatData1.setUvi( bodyFatData.getUvi());
+            bodyFatData1.setBmi(bodyFatData.getBmi());
+            bodyFatData1.setBmr(bodyFatData.getBmr());
+            bodyFatData1.setBodyAge(bodyFatData.getBodyAge());
+            bodyFatData1.setPp(bodyFatData.getPp());
+            bodyFatData1.setRom(bodyFatData.getRom());
+            bodyFatData1.setVwc(bodyFatData.getVwc());
+            bodyFatData1.setSfr(bodyFatData.getSfr());
+            bodyFatData1.setUvi(bodyFatData.getUvi());
             bodyFatData1.setDecimalInfo(algorithmInfo.getDecimalInfo());
             bodyFatData1.setNumber(1);
             bodyFatData1.setDate(ParseData.getDate());
-            bodyFatData1.setTime( ParseData.getTime());
-            onGetFatData(false,bodyFatData1);
+            bodyFatData1.setTime(ParseData.getTime());
+            onGetFatData(false, bodyFatData1);
         }
     }
 
@@ -887,15 +867,12 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
 
     private void initPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            ActivityCompat
-                    .requestPermissions(this,
-                            new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode != 1) {
             return;
@@ -905,49 +882,41 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
         } else {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
-                new AlertDialog.Builder(this).setTitle(R.string.tips).setMessage(R.string.tips_hint)
-                        .setPositiveButton(R.string.query, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent =
-                                        new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                Uri uri = Uri.fromParts("package", getApplicationContext()
-                                        .getPackageName(), null);
-                                intent.setData(uri);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (dialog != null) {
-                                    dialog.cancel();
-                                }
+                new AlertDialog.Builder(this).setTitle(R.string.tips).setMessage(R.string.tips_hint).setPositiveButton(R.string.query, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getApplicationContext().getPackageName(), null);
+                        intent.setData(uri);
+                        startActivity(intent);
+                    }
+                }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (dialog != null) {
+                            dialog.cancel();
+                        }
 
-                            }
-                        }).show();
+                    }
+                }).show();
             } else {
-                new AlertDialog.Builder(this).setTitle(R.string.tips).setMessage(R.string.tips_hint)
-                        .setPositiveButton(R.string.query, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent =
-                                        new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                Uri uri = Uri.fromParts("package", getApplicationContext()
-                                        .getPackageName(), null);
-                                intent.setData(uri);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (dialog != null) {
-                                    dialog.cancel();
-                                }
+                new AlertDialog.Builder(this).setTitle(R.string.tips).setMessage(R.string.tips_hint).setPositiveButton(R.string.query, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getApplicationContext().getPackageName(), null);
+                        intent.setData(uri);
+                        startActivity(intent);
+                    }
+                }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (dialog != null) {
+                            dialog.cancel();
+                        }
 
-                            }
-                        }).show();
+                    }
+                }).show();
             }
 
         }

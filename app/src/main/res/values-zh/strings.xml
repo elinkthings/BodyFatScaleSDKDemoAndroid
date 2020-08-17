@@ -35,6 +35,8 @@
     <string name="default_weight">体重: &#8212;</string>
     <string name="default_temp">温度: &#8212;</string>
     <string name="default_DID">DID: &#8212;</string>
+    <string name="default_version">Version: &#8212;</string>
+    <string name="ble_version">Ble版本: %s</string>
 
     <string name="state_connected">已连接设备: %1$s</string>
     <string name="state_bound">已绑定设备: %1$s</string>
@@ -74,7 +76,6 @@
     <string name="body_fat_data">体脂数据: %1$s</string>
     <string name="history_data">历史数据: %1$s</string>
 
-    <string name="ble_version">BLE版本: %1$s</string>
     <string name="user_id">用户编号: %1$s</string>
     <string name="mcu_date">测量日期: %1$s</string>
     <string name="mcu_time">测量时间: %1$s</string>
