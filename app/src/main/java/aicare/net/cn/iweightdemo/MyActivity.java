@@ -92,7 +92,7 @@ public class MyActivity extends BleProfileServiceReadyActivity implements Device
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AiFitSDK.getInstance().init(this, "eadecf060bd49872", "00005acc8e56e34dfc2995062c");
+        AiFitSDK.getInstance().init(this);
         setContentView(R.layout.activity_my);
         initData();
         initViews();
